@@ -22,3 +22,29 @@ console.info('App initialized (modular) with Lenis + GSAP ScrollTrigger')
 export { lenis }
 // Update ScrollTrigger on scroll via Lenis
 
+// Minimal, unobtrusive cart button handling (UI feedback only)
+function initAddToCart() {
+	document.addEventListener('click', (ev) => {
+		const btn = ev.target.closest('button[data-add-to-cart]')
+		if (!btn) return
+
+		const card = btn.closest('article')
+		const title = card?.querySelector('h4')?.textContent?.trim() ?? 'Produkt'
+		const price = card?.querySelector('span.font-bold')?.textContent?.trim() ?? ''
+
+		// Lightweight visual feedback
+		const original = btn.textContent
+		btn.disabled = true
+		btn.textContent = 'Hinzugefügt ✓'
+		setTimeout(() => {
+			btn.disabled = false
+			btn.textContent = original
+		}, 1200)
+
+		// Hook for future cart logic
+		console.info('Added to cart:', { title, price })
+	})
+}
+
+initAddToCart()
+
