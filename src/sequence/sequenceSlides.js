@@ -7,15 +7,12 @@ export function initSequenceSlides() {
   if (!blocks.length) return;
 
   for (let i = 0; i < blocks.length; i++) blocks[i].classList.remove('is-visible');
-  blocks[0].classList.add('is-visible');
-  blocks[0].style.opacity = '1';
-  blocks[0].style.transform = 'translateY(0)';
 
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: section,
-      start: 'top center',
-      end: 'bottom center',
+      start: 'top top',
+      end: 'bottom bottom',
       scrub: true,
     },
     defaults: { ease: 'power2.out' },

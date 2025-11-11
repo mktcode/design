@@ -1,124 +1,100 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design + Tailwind v4 + GSAP + Lenis</title>
-    <link rel="icon" href="data:," />
-  </head>
-  <body class="bg-white text-gray-900 antialiased">
-    <header class="sticky top-0 z-50 backdrop-blur supports-backdrop-filter:bg-neutral-950/60">
-      <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-        <h1 class="text-xl font-semibold">Design</h1>
-        <nav class="hidden md:flex gap-6 text-sm">
-          <a href="#hero" class="hover:text-teal-300 transition-colors">Home</a>
-          <a href="#features" class="hover:text-teal-300 transition-colors">Features</a>
-          <a href="#gallery" class="hover:text-teal-300 transition-colors">Gallery</a>
-        </nav>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design + Tailwind v4 + GSAP + Lenis</title>
+  <link rel="icon" href="data:," />
+</head>
+
+<body class="bg-white text-gray-900 antialiased">
+  <header class="sticky top-0 z-50 backdrop-blur supports-backdrop-filter:bg-white-950/60">
+    <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+      <h1 class="text-xl font-semibold">Design</h1>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#hero" class="hover:text-teal-300 transition-colors">Home</a>
+        <a href="#features" class="hover:text-teal-300 transition-colors">Features</a>
+        <a href="#gallery" class="hover:text-teal-300 transition-colors">Gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app">
+    <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
+      <!-- Parallax background layer (fixed to viewport) restored -->
+      <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
+        <img src="./assets/img/luftbild.jpg" alt="" aria-hidden="true"
+          class="hero-bg h-full w-full object-cover will-change-transform" />
+        <div class="hero-overlay absolute inset-0 bg-neutral-950/40 will-change-opacity"></div>
       </div>
-    </header>
+      <div class="text-center">
+        <p class="text-teal-300 text-sm tracking-widest uppercase fade-in">Tailwind v4 · Vite</p>
+        <h2 class="mt-3 text-5xl md:text-7xl font-extrabold tracking-tight fade-in">Schlehbaumhof</h2>
+        <p class="mt-6 max-w-2xl mx-auto text-neutral-300 fade-in">GSAP + ScrollTrigger wired to Lenis for buttery
+          smooth scrolling. Edit src/main.js to customize the animations.</p>
+      </div>
+    </section>
 
-    <main id="app">
-      <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
-        <!-- Parallax background layer (fixed to viewport) restored -->
-        <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
-          <img src="./assets/img/luftbild.jpg" alt="" aria-hidden="true"
-               class="hero-bg h-full w-full object-cover will-change-transform" />
-          <div class="hero-overlay absolute inset-0 bg-neutral-950/40 will-change-opacity"></div>
+    <section id="features" class="py-24 px-6">
+      <div class="mx-auto max-w-6xl grid md:grid-cols-3 gap-10">
+        <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
+          <h3 class="text-xl font-semibold">Tailwind v4</h3>
+          <p class="mt-2 text-neutral-300">Modern plugin via Vite, single @import, zero-config defaults.</p>
         </div>
-        <div class="text-center">
-          <p class="text-teal-300 text-sm tracking-widest uppercase fade-in">Tailwind v4 · Vite</p>
-          <h2 class="mt-3 text-5xl md:text-7xl font-extrabold tracking-tight fade-in">Schlehbaumhof</h2>
-          <p class="mt-6 max-w-2xl mx-auto text-neutral-300 fade-in">GSAP + ScrollTrigger wired to Lenis for buttery smooth scrolling. Edit src/main.js to customize the animations.</p>
+        <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
+          <h3 class="text-xl font-semibold">GSAP + ScrollTrigger</h3>
+          <p class="mt-2 text-neutral-300">Powerful animation engine with scroll-linked triggers.</p>
         </div>
-      </section>
-
-      <section id="features" class="py-24 px-6">
-        <div class="mx-auto max-w-6xl grid md:grid-cols-3 gap-10">
-          <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
-            <h3 class="text-xl font-semibold">Tailwind v4</h3>
-            <p class="mt-2 text-neutral-300">Modern plugin via Vite, single @import, zero-config defaults.</p>
-          </div>
-          <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
-            <h3 class="text-xl font-semibold">GSAP + ScrollTrigger</h3>
-            <p class="mt-2 text-neutral-300">Powerful animation engine with scroll-linked triggers.</p>
-          </div>
-          <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
-            <h3 class="text-xl font-semibold">Lenis</h3>
-            <p class="mt-2 text-neutral-300">Lightweight smooth-scrolling with RAF-driven updates.</p>
-          </div>
+        <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
+          <h3 class="text-xl font-semibold">Lenis</h3>
+          <p class="mt-2 text-neutral-300">Lightweight smooth-scrolling with RAF-driven updates.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="gallery" class="py-24 px-6">
-        <div class="mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="h-64 rounded-xl bg-linear-to-br from-fuchsia-600 to-pink-600 fade-in"></div>
-          <div class="h-64 rounded-xl bg-linear-to-br from-teal-600 to-emerald-600 fade-in"></div>
-          <div class="h-64 rounded-xl bg-linear-to-br from-sky-600 to-indigo-600 fade-in"></div>
-          <div class="h-64 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 fade-in"></div>
-          <div class="h-64 rounded-xl bg-linear-to-br from-red-600 to-rose-600 fade-in"></div>
-          <div class="h-64 rounded-xl bg-linear-to-br from-lime-600 to-green-600 fade-in"></div>
+    <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
+    <section id="sequence" class="relative">
+      <div class="sticky top-0 h-screen">
+        <canvas id="bg-sequence" class="w-full h-full"></canvas>
+      </div>
+      <div class="sequence-slides sticky top-24 container mx-auto">
+        <div class="text-block">
+          <h3 class="text-2xl font-semibold mb-3">Lorem ipsum dolor sit amet</h3>
+          <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
+            Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis
+            natoque penatibus et magnis dis parturient montes.</p>
         </div>
-      </section>
-
-      <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
-      <section id="sequence" class="py-24 px-6 relative min-h-[300vh]">
-        <div class="sequence-grid">
-          <!-- LEFT: Content slides (one visible at a time) -->
-          <div class="sequence-slides min-h-[60vh] md:min-h-[80vh] sticky top-24">
-            <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Lorem ipsum dolor sit amet</h3>
-            <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Consectetur adipiscing elit</h3>
-            <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Aenean lacinia bibendum</h3>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Vivamus sagittis lacus vel</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Nullam quis risus eget</h3>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Curabitur blandit tempus</h3>
-            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Cras mattis consectetur</h3>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Praesent commodo cursus</h3>
-            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Aenean lacinia bibendum nulla sed consectetur.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Sed posuere consectetur</h3>
-            <p>Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor.</p>
-            </div>
-            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
-            <h3 class="text-2xl font-semibold mb-3">Maecenas faucibus mollis</h3>
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nulla vitae elit libero, a pharetra augue. Donec ullamcorper nulla non metus auctor fringilla. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-            </div>
-          </div>
-          <!-- RIGHT: Sticky canvas with vignette -->
-          <div class="sequence-visual sticky top-10 md:top-16 lg:top-20 h-[70vh] md:h-[80vh] lg:h-screen">
-            <div class="sequence-canvas-wrapper relative z-0 mask-[url(/assets/img/frame-canvas-mask.png)]">
-              <canvas id="bg-sequence" class="w-full h-full"></canvas>
-            </div>
-          </div>
+        <div class="text-block">
+          <h3 class="text-2xl font-semibold mb-3">Consectetur adipiscing elit</h3>
+          <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur
+            blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet
+            fermentum.</p>
         </div>
-      </section>
+        <div class="text-block">
+          <h3 class="text-2xl font-semibold mb-3">Aenean lacinia bibendum</h3>
+          <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor
+            ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
+            Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        </div>
+      </div>
+    </section>
 
-      <footer class="py-10 text-center text-neutral-400 text-sm">Built with Tailwind v4, Vite, GSAP, and Lenis</footer>
-    </main>
+    <section id="gallery" class="py-24 px-6">
+      <div class="mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="h-64 rounded-xl bg-linear-to-br from-fuchsia-600 to-pink-600 fade-in"></div>
+        <div class="h-64 rounded-xl bg-linear-to-br from-teal-600 to-emerald-600 fade-in"></div>
+        <div class="h-64 rounded-xl bg-linear-to-br from-sky-600 to-indigo-600 fade-in"></div>
+        <div class="h-64 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 fade-in"></div>
+        <div class="h-64 rounded-xl bg-linear-to-br from-red-600 to-rose-600 fade-in"></div>
+        <div class="h-64 rounded-xl bg-linear-to-br from-lime-600 to-green-600 fade-in"></div>
+      </div>
+    </section>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <footer class="py-10 text-center text-neutral-400 text-sm">Built with Tailwind v4, Vite, GSAP, and Lenis</footer>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
