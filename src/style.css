@@ -63,6 +63,11 @@ body {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity .4s ease, transform .4s ease;
+  background-color: rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 0 200px rgba(0, 0, 0, 1));
+  padding: 2.5rem;
+  border-radius: 2.5rem;
+  backdrop-filter: blur(10px);
 }
 
 #sequence .sequence-slides .text-block.is-visible {
