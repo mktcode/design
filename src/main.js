@@ -65,7 +65,42 @@ fades.forEach((el, i) => {
   )
 })
 
-// Removed hero pin so the sticky header always stays at the top
+// Parallax + reveal timeline for hero background
+// Scales and fades hero background + overlay while gently lifting/fading content
+const heroTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '#hero',
+    start: 'top top',
+    end: 'bottom top', // run until the end of the hero reaches the top
+    scrub: true,
+  },
+})
+  .fromTo('.hero-bg', { scale: 1, opacity: 1 }, { scale: 1.35, opacity: 0, ease: 'none' }, 0)
+  .to('.hero-overlay', {
+    opacity: 0,
+    ease: 'none',
+  }, 0)
+  .to('#hero .text-center', {
+    y: -60,
+    opacity: 0.7,
+    ease: 'power1.out',
+  }, 0.05)
+
+// Optional subtle counter-move for foreground elements for extra depth
+gsap.utils.toArray('#hero .fade-in').forEach((el) => {
+  gsap.to(el, {
+    y: -20,
+    scrollTrigger: {
+      trigger: '#hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+    },
+    ease: 'none',
+  })
+})
+
+// Removed hero pin so the sticky header always stays at the top (already handled earlier)
 
 // Optional: hook GSAP's internal ticker to Lenis for time-based animations
 // gsap.ticker.add((time) => {

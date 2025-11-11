@@ -11,3 +11,7 @@ html, body {
 
 /* Small helper for demo visuals */
 .fade-in { opacity: 0; }
+
+/* Micro-optimizations for animated layers */
+.will-change-transform { will-change: transform; }
+.will-change-opacity { will-change: opacity; }

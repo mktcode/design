@@ -19,14 +19,16 @@
     </header>
 
     <main id="app">
-      <section id="hero" class="relative overflow-hidden min-h-[90vh] grid place-items-center px-6">
-        <!-- Decorative background image from local assets -->
-        <img src="./assets/img/luftbild.jpg" alt="" aria-hidden="true"
-             class="absolute inset-0 -z-10 h-full w-full object-cover">
-        <div class="absolute inset-0 -z-10 bg-neutral-950/40"></div>
+      <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
+        <!-- Parallax background layer (fixed to viewport) -->
+        <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
+          <img src="./assets/img/luftbild.jpg" alt="" aria-hidden="true"
+               class="hero-bg h-full w-full object-cover will-change-transform" />
+          <div class="hero-overlay absolute inset-0 bg-neutral-950/40 will-change-opacity"></div>
+        </div>
         <div class="text-center">
           <p class="text-teal-300 text-sm tracking-widest uppercase fade-in">Tailwind v4 · Vite</p>
-          <h2 class="mt-3 text-5xl md:text-7xl font-extrabold tracking-tight fade-in">Smooth scroll + scroll-triggered motion</h2>
+          <h2 class="mt-3 text-5xl md:text-7xl font-extrabold tracking-tight fade-in">Schlehbaumhof</h2>
           <p class="mt-6 max-w-2xl mx-auto text-neutral-300 fade-in">GSAP + ScrollTrigger wired to Lenis for buttery smooth scrolling. Edit src/main.js to customize the animations.</p>
           <a href="#features" class="inline-block mt-10 rounded-lg bg-teal-500 px-6 py-3 font-medium text-neutral-900 hover:bg-teal-400 transition-colors fade-in">Explore</a>
         </div>
