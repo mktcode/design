@@ -35,7 +35,7 @@ html, body {
 }
 
 /* Slides overlay container */
-#sequence .sequence-slides { display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column; gap: 2rem; padding: 2rem 0; }
+#sequence .sequence-slides { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 2rem; padding: 2rem 0; position: sticky; top: 50%; transform: translateY(-50%); }
 #sequence .sequence-slides .text-block { color: white; max-width: 54ch; opacity: 0; transform: translateY(30px); transition: opacity .4s ease, transform .4s ease; }
 #sequence .sequence-slides .text-block.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -61,7 +61,7 @@ html, body {
 
 @media (min-width: 900px) {
   #features .feature-parallax { min-height: 900px; }
-  #features .feature-parallax .p1 { width: 72%; top: 140px; }
+  #features .feature-parallax .p1 { width: 90%; top: 140px; }
   #features .feature-parallax .p2 { width: 78%; left: 50%; top: 180px; }
   #features .feature-parallax .p3 { width: 100%; left: 26%; top: 520px; }
 }

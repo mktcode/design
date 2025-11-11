@@ -106,7 +106,7 @@ export function initScrollSequence() {
     ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: 'bottom bottom',
+      end: 'bottom center',
       scrub: 0.6,
       onUpdate: (self) => {
         const p = self.progress || 0;
@@ -116,8 +116,9 @@ export function initScrollSequence() {
           drawFrame(currentFrame);
         }
         const ramp = (x, a, b) => Math.max(0, Math.min(1, (x - a) / (b - a)));
-        const fadeIn = ramp(p, 0.04, 0.16);
-        const fadeOut = ramp(1 - p, 0.04, 0.16);
+        // Slow fade: take ~35% of the section at each side to reach full opacity
+        const fadeIn = ramp(p, 0.0, 0.35);
+        const fadeOut = ramp(1 - p, 0.0, 0.35);
         const opacity = Math.min(fadeIn, fadeOut);
         canvas.style.opacity = opacity;
       },
