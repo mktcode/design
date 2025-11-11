@@ -11,36 +11,69 @@
   --color-brand: #222750;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   font-family: 'Nunito', sans-serif;
 }
 
 /* Small helper for demo visuals */
-.fade-in { opacity: 0; }
+.fade-in {
+  opacity: 0;
+}
 
 /* Micro-optimizations for animated layers */
-.will-change-transform { will-change: transform; }
-.will-change-opacity { will-change: opacity; }
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
 
 /* Background sequence canvas sits behind everything */
 #bg-sequence {
   width: 100%;
   height: 100%;
   display: block;
-  pointer-events: none; /* keep interactions on content */
-  background: #0a0a0a; /* fallback while first frame loads */
+  pointer-events: none;
+  /* keep interactions on content */
+  background: #0a0a0a;
+  /* fallback while first frame loads */
   opacity: 0;
   transition: opacity .4s ease;
 }
 
 /* Slides overlay container */
-#sequence .sequence-slides { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 2rem; padding: 2rem 0; position: sticky; top: 50%; transform: translateY(-50%); }
-#sequence .sequence-slides .text-block { color: white; max-width: 54ch; opacity: 0; transform: translateY(30px); transition: opacity .4s ease, transform .4s ease; }
-#sequence .sequence-slides .text-block.is-visible { opacity: 1; transform: translateY(0); }
+#sequence .sequence-slides {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#sequence .sequence-slides .text-block {
+  color: white;
+  max-width: 54ch;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+#sequence .sequence-slides .text-block.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Vignette overlay (no longer used; mask above handles the fade). Kept as a no-op fallback. */
-.sequence-vignette { display: none; }
+.sequence-vignette {
+  display: none;
+}
 
 /* Subtle, large box shadow to increase contrast for text blocks */
 .shadow-contrast {
@@ -52,21 +85,77 @@ html, body {
 }
 
 /* Feature section parallax image layout */
-#features .feature-parallax { min-height: 820px; position: relative; }
-#features .feature-parallax .parallax-item { position: absolute; left: 0; width: auto; max-width: none; }
+#features .feature-parallax {
+  min-height: 820px;
+  position: relative;
+}
+
+#features .feature-parallax .parallax-item {
+  position: absolute;
+  left: 0;
+  width: auto;
+  max-width: none;
+}
+
 /* Scale sizes for depth: front largest, back smallest */
-#features .feature-parallax .p1 { width: 80%; top: 120px; z-index: 3; transform-origin: 50% 50%; }
-#features .feature-parallax .p2 { width: 64%; top: 300px; left: 46%; z-index: 2; transform-origin: 50% 50%; }
-#features .feature-parallax .p3 { width: 92%; top: 470px; left: 20%; z-index: 1; transform-origin: 50% 50%; }
+#features .feature-parallax .p1 {
+  width: 80%;
+  top: 120px;
+  z-index: 3;
+  transform-origin: 50% 50%;
+}
+
+#features .feature-parallax .p2 {
+  width: 64%;
+  top: 300px;
+  left: 46%;
+  z-index: 2;
+  transform-origin: 50% 50%;
+}
+
+#features .feature-parallax .p3 {
+  width: 92%;
+  top: 470px;
+  left: 20%;
+  z-index: 1;
+  transform-origin: 50% 50%;
+}
 
 @media (min-width: 900px) {
-  #features .feature-parallax { min-height: 900px; }
-  #features .feature-parallax .p1 { width: 90%; top: 140px; }
-  #features .feature-parallax .p2 { width: 78%; left: 50%; top: 180px; }
-  #features .feature-parallax .p3 { width: 100%; left: 26%; top: 520px; }
+  #features .feature-parallax {
+    min-height: 900px;
+  }
+
+  #features .feature-parallax .p1 {
+    width: 90%;
+    top: 140px;
+  }
+
+  #features .feature-parallax .p2 {
+    width: 78%;
+    left: 50%;
+    top: 180px;
+  }
+
+  #features .feature-parallax .p3 {
+    width: 100%;
+    left: 26%;
+    top: 520px;
+  }
 }
 
 @media (max-width: 780px) {
-  #features .feature-parallax .parallax-item { position: relative; width: 100%; left: 0; top: 0; margin-bottom: 2rem; }
-  #features .feature-parallax .p2, #features .feature-parallax .p3 { top: 0; left: 0; }
+  #features .feature-parallax .parallax-item {
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+    margin-bottom: 2rem;
+  }
+
+  #features .feature-parallax .p2,
+  #features .feature-parallax .p3 {
+    top: 0;
+    left: 0;
+  }
 }
