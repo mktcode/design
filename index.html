@@ -10,8 +10,10 @@
 
 <body class="bg-white text-gray-900 antialiased">
   <header class="sticky top-0 z-50 backdrop-blur supports-backdrop-filter:bg-white-950/60">
-    <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-      <h1 class="text-xl font-semibold">Design</h1>
+    <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between text-white">
+      <h1 class="text-xl font-semibold">
+        Schlehbaumhof
+      </h1>
       <nav class="hidden md:flex gap-6 text-sm">
         <a href="#hero" class="hover:text-teal-300 transition-colors">Home</a>
         <a href="#features" class="hover:text-teal-300 transition-colors">Features</a>
@@ -24,31 +26,36 @@
     <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
       <!-- Parallax background layer (fixed to viewport) restored -->
       <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
-        <img src="./assets/img/luftbild.jpg" alt="" aria-hidden="true"
+        <img src="./assets/img/schweinemobil-focus.jpg" alt="" aria-hidden="true"
           class="hero-bg h-full w-full object-cover will-change-transform" />
-        <div class="hero-overlay absolute inset-0 bg-neutral-950/40 will-change-opacity"></div>
+        <div class="hero-overlay absolute inset-0 bg-white opacity-0 will-change-opacity"></div>
       </div>
-      <div class="text-center">
-        <p class="text-teal-300 text-sm tracking-widest uppercase fade-in">Tailwind v4 · Vite</p>
-        <h2 class="mt-3 text-5xl md:text-7xl font-extrabold tracking-tight fade-in">Schlehbaumhof</h2>
-        <p class="mt-6 max-w-2xl mx-auto text-neutral-300 fade-in">GSAP + ScrollTrigger wired to Lenis for buttery
-          smooth scrolling. Edit src/main.js to customize the animations.</p>
+      <div class="text-center drop-shadow-[0_50px_50px_rgb(0_0_0/0.15)] drop-shadow-white/40">
+        <img class="fade-in w-48 mx-auto" src="./assets/img/logo-darum.webp" alt="Darum" />
+        <h2 class="mt-8 text-5xl md:text-7xl text-white font-bold tracking-wide fade-in text-shadow-lg">Schlehbaumhof</h2>
+        <p class="mt-6 max-w-2xl mx-auto text-3xl md:text-4xl text-white/90 fade-in text-shadow-md font-bold">
+          Regionale Bioqualität – In Verantwortung für Tier & Land.
+        </p>
       </div>
     </section>
 
     <section id="features" class="py-24 px-6">
-      <div class="mx-auto max-w-6xl grid md:grid-cols-3 gap-10">
-        <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
-          <h3 class="text-xl font-semibold">Tailwind v4</h3>
-          <p class="mt-2 text-neutral-300">Modern plugin via Vite, single @import, zero-config defaults.</p>
+      <div class="mx-auto max-w-6xl grid grid-cols-2 gap-24">
+        <div class="fade-in text-xl leading-relaxed">
+          <h3 class="text-7xl font-bold">Herzlich Willkommen!</h3>
+          <p class="mt-8">
+            Schön, dass Sie uns auf dem Schlehbaumhof besuchen. Hier können Sie sich über unseren Hof, unsere Tierhaltung und unseren Hofladen informieren.
+          </p>
+          <p class="mt-2">
+            Im Herzen von Darum betreiben wir einen Hofladen, wo Sie die Erzeugnisse unserer ökologisch gehaltenen Schweine sowie weitere selbst erzeugte Produkte direkt erwerben können.
+            Wir bieten Ihnen frisches Fleisch sowie Wurstwaren, aber auch Hähnchen, Lammfleisch und Marmeladen zu fairen Preisen an.
+          </p>
+          <p class="mt-2">
+            Wir freuen uns über Ihren persönlichen Besuch im Hofladen! Ausgewählte Produkte können Sie auch direkt online bestellen.
+          </p>
         </div>
-        <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
-          <h3 class="text-xl font-semibold">GSAP + ScrollTrigger</h3>
-          <p class="mt-2 text-neutral-300">Powerful animation engine with scroll-linked triggers.</p>
-        </div>
-        <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
-          <h3 class="text-xl font-semibold">Lenis</h3>
-          <p class="mt-2 text-neutral-300">Lightweight smooth-scrolling with RAF-driven updates.</p>
+        <div class="fade-in aspect-video">
+          <img src="./assets/img/schweine-sonne.jpg" alt="" class="rounded-xl shadow-2xl shadow-black/30 object-cover" />
         </div>
       </div>
     </section>
@@ -58,21 +65,21 @@
       <div class="sticky top-0 h-screen">
         <canvas id="bg-sequence" class="w-full h-full"></canvas>
       </div>
-      <div class="sequence-slides sticky top-24 container mx-auto">
+      <div class="sequence-slides sticky top-24 container mx-auto text-2xl">
         <div class="text-block">
-          <h3 class="text-2xl font-semibold mb-3">Lorem ipsum dolor sit amet</h3>
+          <h3 class="text-5xl font-semibold mb-3">Lorem ipsum dolor sit amet</h3>
           <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
             Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis
             natoque penatibus et magnis dis parturient montes.</p>
         </div>
         <div class="text-block">
-          <h3 class="text-2xl font-semibold mb-3">Consectetur adipiscing elit</h3>
+          <h3 class="text-5xl font-semibold mb-3">Consectetur adipiscing elit</h3>
           <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur
             blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet
             fermentum.</p>
         </div>
         <div class="text-block">
-          <h3 class="text-2xl font-semibold mb-3">Aenean lacinia bibendum</h3>
+          <h3 class="text-5xl font-semibold mb-3">Aenean lacinia bibendum</h3>
           <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor
             ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
             Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
