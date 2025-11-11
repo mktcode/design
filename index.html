@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design + Tailwind v4 + GSAP + Lenis</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body class="bg-neutral-950 text-neutral-100 antialiased">
+    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60">
+      <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+        <h1 class="text-xl font-semibold">Design</h1>
+        <nav class="hidden md:flex gap-6 text-sm">
+          <a href="#hero" class="hover:text-teal-300 transition-colors">Home</a>
+          <a href="#features" class="hover:text-teal-300 transition-colors">Features</a>
+          <a href="#gallery" class="hover:text-teal-300 transition-colors">Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="app">
+      <section id="hero" class="min-h-[90vh] grid place-items-center px-6">
+        <div class="text-center">
+          <p class="text-teal-300 text-sm tracking-widest uppercase fade-in">Tailwind v4 · Vite</p>
+          <h2 class="mt-3 text-5xl md:text-7xl font-extrabold tracking-tight fade-in">Smooth scroll + scroll-triggered motion</h2>
+          <p class="mt-6 max-w-2xl mx-auto text-neutral-300 fade-in">GSAP + ScrollTrigger wired to Lenis for buttery smooth scrolling. Edit src/main.js to customize the animations.</p>
+          <a href="#features" class="inline-block mt-10 rounded-lg bg-teal-500 px-6 py-3 font-medium text-neutral-900 hover:bg-teal-400 transition-colors fade-in">Explore</a>
+        </div>
+      </section>
+
+      <section id="features" class="py-24 px-6">
+        <div class="mx-auto max-w-6xl grid md:grid-cols-3 gap-10">
+          <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
+            <h3 class="text-xl font-semibold">Tailwind v4</h3>
+            <p class="mt-2 text-neutral-300">Modern plugin via Vite, single @import, zero-config defaults.</p>
+          </div>
+          <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
+            <h3 class="text-xl font-semibold">GSAP + ScrollTrigger</h3>
+            <p class="mt-2 text-neutral-300">Powerful animation engine with scroll-linked triggers.</p>
+          </div>
+          <div class="p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 fade-in">
+            <h3 class="text-xl font-semibold">Lenis</h3>
+            <p class="mt-2 text-neutral-300">Lightweight smooth-scrolling with RAF-driven updates.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="py-24 px-6">
+        <div class="mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="h-64 rounded-xl bg-linear-to-br from-fuchsia-600 to-pink-600 fade-in"></div>
+          <div class="h-64 rounded-xl bg-linear-to-br from-teal-600 to-emerald-600 fade-in"></div>
+          <div class="h-64 rounded-xl bg-linear-to-br from-sky-600 to-indigo-600 fade-in"></div>
+          <div class="h-64 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 fade-in"></div>
+          <div class="h-64 rounded-xl bg-linear-to-br from-red-600 to-rose-600 fade-in"></div>
+          <div class="h-64 rounded-xl bg-linear-to-br from-lime-600 to-green-600 fade-in"></div>
+        </div>
+      </section>
+
+      <footer class="py-10 text-center text-neutral-400 text-sm">Built with Tailwind v4, Vite, GSAP, and Lenis</footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

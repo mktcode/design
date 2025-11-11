@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* App base styles (optional) */
+:root {
+  color-scheme: light dark;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* Small helper for demo visuals */
+.fade-in { opacity: 0; }
