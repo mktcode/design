@@ -43,21 +43,27 @@
       <div class="mx-auto max-w-6xl grid grid-cols-2 gap-24">
         <div class="fade-in text-xl leading-relaxed">
           <h3 class="text-7xl font-bold">Herzlich Willkommen!</h3>
-          <p class="mt-8">
+          <p class="mt-8 fade-in">
             Schön, dass Sie uns auf dem Schlehbaumhof besuchen. Hier können Sie sich über unseren Hof, unsere Tierhaltung und unseren Hofladen informieren.
           </p>
-          <p class="mt-2">
+          <p class="mt-2 fade-in">
             Im Herzen von Darum betreiben wir einen Hofladen, wo Sie die Erzeugnisse unserer ökologisch gehaltenen Schweine sowie weitere selbst erzeugte Produkte direkt erwerben können.
             Wir bieten Ihnen frisches Fleisch sowie Wurstwaren, aber auch Hähnchen, Lammfleisch und Marmeladen zu fairen Preisen an.
           </p>
-          <p class="mt-2">
+          <p class="mt-2 fade-in">
             Wir freuen uns über Ihren persönlichen Besuch im Hofladen! Ausgewählte Produkte können Sie auch direkt online bestellen.
           </p>
         </div>
-        <div class="relative">
-          <img src="./assets/img/peer.jpg" alt="" class="rounded-xl shadow-2xl shadow-black/30 aspect-video w-full object-cover" />
-          <img src="./assets/img/hofladen.jpg" alt="" class="rounded-xl shadow-2xl shadow-black/30 aspect-video w-full object-cover" />
-          <img src="./assets/img/hof-gelbe-blumen.jpg" alt="" class="rounded-xl shadow-2xl shadow-black/30 aspect-video w-full object-cover" />
+        <div class="relative feature-parallax">
+          <!-- Front image (slowest) -->
+          <img src="./assets/img/peer.jpg" alt="Peer auf dem Hof" class="parallax-item p1 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.12" data-rotate="-6" />
+          <!-- Mid image -->
+          <img src="./assets/img/hofladen.jpg" alt="Hofladen" class="parallax-item p2 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.28" data-rotate="4" />
+          <!-- Back image (fastest) -->
+          <img src="./assets/img/hof-gelbe-blumen.jpg" alt="Hofwiese mit gelben Blumen" class="parallax-item p3 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.55" data-rotate="-3" />
+          <button class="absolute bottom-1/3 left-1/2 -translate-x-1/2 bg-(--color-brand) text-white font-semibold px-8 py-4 rounded-full shadow-md shadow-black/10 transition-all text-xl hover:bg-(--color-brand)/90 hover:shadow-black/20 hover:shadow-xl duration-500 cursor-pointer">
+            Zum Hofladen
+          </button>
         </div>
       </div>
     </section>

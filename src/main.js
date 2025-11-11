@@ -4,6 +4,7 @@ import './style.css'
 import { initSmoothScroll } from './smoothScroll.js'
 import { initFadeIn } from './animations/fadeIn.js'
 import { initHeroParallax } from './animations/heroParallax.js'
+import { initParallaxImages } from './animations/parallaxImages.js'
 import { initScrollSequence } from './sequence/scrollSequence.js'
 import { initSequenceSlides } from './sequence/sequenceSlides.js'
 
@@ -11,6 +12,7 @@ import { initSequenceSlides } from './sequence/sequenceSlides.js'
 const lenis = initSmoothScroll()
 initFadeIn()
 initHeroParallax()
+initParallaxImages()
 initScrollSequence()
 initSequenceSlides()
 
