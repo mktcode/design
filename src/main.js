@@ -65,15 +65,7 @@ fades.forEach((el, i) => {
   )
 })
 
-// Example of a pinned section (hero) fade gradient
-ScrollTrigger.create({
-  trigger: '#hero',
-  start: 'top top',
-  end: '+=60%',
-  pin: true,
-  pinSpacing: true,
-  onEnter: () => {},
-})
+// Removed hero pin so the sticky header always stays at the top
 
 // Optional: hook GSAP's internal ticker to Lenis for time-based animations
 // gsap.ticker.add((time) => {
