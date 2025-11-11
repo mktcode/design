@@ -12,7 +12,7 @@ export function initHeroParallax() {
   })
     .fromTo('.hero-bg', { scale: 1, opacity: 1, filter: 'blur(0px)' }, { scale: 1.35, opacity: 0, filter: 'blur(100px)', ease: 'none' }, 0)
     .to('.hero-overlay', { opacity: 1, duration: 0.2, ease: 'none' }, 0)
-    .to('#hero .text-center', { y: -60, opacity: 0, duration: 0.2, ease: 'power1.out' }, 0.05);
+    .to('#hero .text-center', { y: -60, opacity: 0, duration: 0.1, ease: 'power1.out' }, 0.05);
 
   // Subtle upward motion for hero fades
   try {
