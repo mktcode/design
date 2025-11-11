@@ -48,16 +48,17 @@ const fades = gsap.utils.toArray('.fade-in')
 fades.forEach((el, i) => {
   gsap.fromTo(
     el,
-    { opacity: 0, y: 40 },
+    { opacity: 0, y: 60 },
     {
       opacity: 1,
       y: 0,
-      duration: 0.9,
+      duration: 1.4,
       ease: 'power3.out',
-      delay: i * 0.05,
+      delay: i * 0.15, // stagger more noticeably
       scrollTrigger: {
         trigger: el,
-        start: 'top 50%',
+        start: 'top 65%', // start a bit later for more anticipation
+        end: 'bottom 45%',
         toggleActions: 'play none none reverse',
       },
     }
