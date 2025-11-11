@@ -93,6 +93,9 @@ for (let i = 0; i < heroFadeNodeList.length; i++) {
   if (!canvas) return
   const ctx = canvas.getContext('2d')
 
+  // Sequence config
+  const SCENE_SCROLL = 4000 // make the sequence slower/longer
+
   // Make canvas match device pixel ratio for crisp rendering
   const dpr = Math.min(window.devicePixelRatio || 1, 2)
   function resizeCanvas() {
@@ -210,11 +213,11 @@ for (let i = 0; i < heroFadeNodeList.length; i++) {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=2000', // scroll distance allocated to play sequence
+        end: `+=${SCENE_SCROLL}`, // scroll distance allocated to play sequence
         pin: true,
         anticipatePin: 1,
-        scrub: 0.3,
-        markers: true,
+        scrub: 0.6,
+        markers: false,
         onEnter: () => fadeCanvas(1),
         onLeave: () => fadeCanvas(0),
         onEnterBack: () => fadeCanvas(1),
@@ -223,7 +226,7 @@ for (let i = 0; i < heroFadeNodeList.length; i++) {
     })
 
     // Debugging info
-    console.info(`Sequence initialized: ${frames.length} frames over pinned scroll.`)
+    console.info(`Sequence initialized: ${frames.length} frames over pinned scroll ${SCENE_SCROLL}px.`)
   }
 
   function fadeCanvas(target) {
@@ -238,5 +241,37 @@ for (let i = 0; i < heroFadeNodeList.length; i++) {
   window.addEventListener('resize', resizeCanvas)
   resizeCanvas()
   preloadAll().catch((e) => console.error('Sequence preload failed', e))
+})()
+
+// ------------------------------------------------------------
+// Slides: show one text-block at a time during the sequence pin
+// ------------------------------------------------------------
+(function initSequenceSlides() {
+  const section = document.getElementById('sequence')
+  if (!section) return
+  const blocks = section.querySelectorAll('.sequence-slides .text-block')
+  if (!blocks.length) return
+
+  // Create a scrubbed timeline which fades each block in and out sequentially
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: '+=4000', // keep in sync with SCENE_SCROLL
+      scrub: true,
+      markers: false,
+    },
+    defaults: { ease: 'power2.out' },
+  })
+
+  const step = 1
+  for (let i = 0; i < blocks.length; i++) {
+    const el = blocks[i]
+    // Set initial state
+    gsap.set(el, { opacity: 0, y: 40 })
+    // At time i*step, fade in, hold briefly, then fade out
+    tl.to(el, { opacity: 1, y: 0, duration: 0.35 }, i * step)
+      .to(el, { opacity: 0, y: -20, duration: 0.35 }, i * step + 0.65)
+  }
 })()
 
