@@ -30,7 +30,6 @@
           <p class="text-teal-300 text-sm tracking-widest uppercase fade-in">Tailwind v4 · Vite</p>
           <h2 class="mt-3 text-5xl md:text-7xl font-extrabold tracking-tight fade-in">Schlehbaumhof</h2>
           <p class="mt-6 max-w-2xl mx-auto text-neutral-300 fade-in">GSAP + ScrollTrigger wired to Lenis for buttery smooth scrolling. Edit src/main.js to customize the animations.</p>
-          <a href="#features" class="inline-block mt-10 rounded-lg bg-teal-500 px-6 py-3 font-medium text-neutral-900 hover:bg-teal-400 transition-colors fade-in">Explore</a>
         </div>
       </section>
 
@@ -63,52 +62,57 @@
       </section>
 
       <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
-      <section id="sequence" class="py-24 px-6 relative">
-        <!-- Canvas lives inside section so we can pin & fade it independently -->
-        <div class="sequence-canvas-wrapper sticky top-0 h-screen z-0">
-          <canvas id="bg-sequence" class="w-full h-full"></canvas>
-        </div>
-        <!-- Overlay slides: one text-block visible at a time while pinned -->
-        <div class="sequence-slides sticky top-0 h-screen z-10 relative">
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+      <section id="sequence" class="py-24 px-6 relative min-h-[300vh]">
+        <div class="sequence-grid">
+          <!-- LEFT: Content slides (one visible at a time) -->
+          <div class="sequence-slides min-h-[60vh] md:min-h-[80vh] sticky top-24">
+            <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Lorem ipsum dolor sit amet</h3>
             <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Consectetur adipiscing elit</h3>
             <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Aenean lacinia bibendum</h3>
             <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Vivamus sagittis lacus vel</h3>
             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Nullam quis risus eget</h3>
             <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Curabitur blandit tempus</h3>
             <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec ullamcorper nulla non metus auctor fringilla.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Cras mattis consectetur</h3>
             <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Praesent commodo cursus</h3>
             <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Sed posuere consectetur</h3>
             <p>Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor.</p>
-          </div>
-          <div class="text-block p-6 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
+            </div>
+            <div class="text-block p-6 mt-8 rounded-2xl bg-neutral-900/60 text-neutral-100 shadow-contrast">
             <h3 class="text-2xl font-semibold mb-3">Maecenas faucibus mollis</h3>
             <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nulla vitae elit libero, a pharetra augue. Donec ullamcorper nulla non metus auctor fringilla. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+            </div>
+          </div>
+          <!-- RIGHT: Sticky canvas with vignette -->
+          <div class="sequence-visual sticky top-10 md:top-16 lg:top-20 h-[70vh] md:h-[80vh] lg:h-screen">
+            <div class="sequence-canvas-wrapper relative w-full h-full z-0">
+              <canvas id="bg-sequence" class="w-full h-full"></canvas>
+              <div class="sequence-vignette" aria-hidden="true"></div>
+            </div>
           </div>
         </div>
       </section>

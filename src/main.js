@@ -29,26 +29,30 @@ ScrollTrigger.addEventListener('refresh', () => lenis.resize())
 ScrollTrigger.refresh()
 
 // Simple animations for elements with .fade-in class as they enter viewport
-const fades = gsap.utils.toArray('.fade-in') || []
-for (let i = 0; i < fades.length; i++) {
-  const el = fades[i]
-  gsap.fromTo(
-    el,
-    { opacity: 0, y: 60 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1.4,
-      ease: 'power3.out',
-      delay: i * 0.15, // stagger more noticeably
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 65%', // start a bit later for more anticipation
-        end: 'bottom 45%',
-        toggleActions: 'play none none reverse',
-      },
-    }
-  )
+try {
+  const fades = document.querySelectorAll('.fade-in')
+  for (let i = 0; i < fades.length; i++) {
+    const el = fades[i]
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        delay: i * 0.12,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 70%',
+          end: 'bottom 45%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+  }
+} catch (e) {
+  console.warn('Fade-in setup skipped', e)
 }
 
 console.info('App initialized with Lenis + GSAP ScrollTrigger')
@@ -68,20 +72,23 @@ const heroTl = gsap.timeline({
   .to('#hero .text-center', { y: -60, opacity: 0.7, ease: 'power1.out' }, 0.05)
 
 // Collect hero fade-ins defensively; avoid forEach if environment polyfills are off
-const heroFadeNodeList = document.querySelectorAll('#hero .fade-in')
-console.debug('Hero fade elements count:', heroFadeNodeList.length)
-for (let i = 0; i < heroFadeNodeList.length; i++) {
-  const el = heroFadeNodeList[i]
-  gsap.to(el, {
-    y: -20,
-    scrollTrigger: {
-      trigger: '#hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-    },
-    ease: 'none',
-  })
+try {
+  const heroFadeNodeList = document.querySelectorAll('#hero .fade-in')
+  for (let i = 0; i < heroFadeNodeList.length; i++) {
+    const el = heroFadeNodeList[i]
+    gsap.to(el, {
+      y: -20,
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+      ease: 'none',
+    })
+  }
+} catch (e) {
+  console.warn('Hero fade setup skipped', e)
 }
 
 // ------------------------------------------------------------
@@ -93,16 +100,16 @@ for (let i = 0; i < heroFadeNodeList.length; i++) {
   if (!canvas) return
   const ctx = canvas.getContext('2d')
 
-  // Sequence config
-  const SCENE_SCROLL = 4000 // make the sequence slower/longer
+  // Sequence config (kept for reference; we now use section height instead)
+  const SCENE_SCROLL = 4000 // no longer used for pinning, section height drives progress
 
   // Make canvas match device pixel ratio for crisp rendering
   const dpr = Math.min(window.devicePixelRatio || 1, 2)
   function resizeCanvas() {
     const parent = canvas.parentElement || section
     const rect = parent.getBoundingClientRect()
-    const w = rect.width
-    const h = rect.height
+    const w = rect.width || window.innerWidth * 0.55
+    const h = rect.height || window.innerHeight
     canvas.width = Math.round(w * dpr)
     canvas.height = Math.round(h * dpr)
     canvas.style.width = w + 'px'
@@ -197,43 +204,36 @@ for (let i = 0; i < heroFadeNodeList.length; i++) {
 
   function setupScrub() {
     if (!ready || !frames.length) return
-    const state = { frame: 0 }
 
-    // Pin the section to create a scene where the sequence plays
-    gsap.to(state, {
-      frame: frames.length - 1,
-      ease: 'none',
-      snap: 'frame',
-      onUpdate: () => {
-        if (currentFrame !== state.frame) {
-          currentFrame = state.frame
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top center',
+      end: 'bottom center',
+      scrub: 0.6,
+      onUpdate: (self) => {
+        const p = self.progress || 0
+        const idx = Math.round(p * (frames.length - 1))
+        if (currentFrame !== idx) {
+          currentFrame = idx
           drawFrame(currentFrame)
         }
-      },
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: `+=${SCENE_SCROLL}`, // scroll distance allocated to play sequence
-        pin: true,
-        anticipatePin: 1,
-        scrub: 0.6,
-        markers: false,
-        onEnter: () => fadeCanvas(1),
-        onLeave: () => fadeCanvas(0),
-        onEnterBack: () => fadeCanvas(1),
-        onLeaveBack: () => fadeCanvas(0),
+        // Scroll-linked fade for canvas without utils (robust across builds)
+        const ramp = (x, a, b) => Math.max(0, Math.min(1, (x - a) / (b - a)))
+        const fadeIn = ramp(p, 0.04, 0.16)
+        const fadeOut = ramp(1 - p, 0.04, 0.16)
+        const opacity = Math.min(fadeIn, fadeOut)
+        canvas.style.opacity = opacity
       },
     })
 
-    // Debugging info
-    console.info(`Sequence initialized: ${frames.length} frames over pinned scroll ${SCENE_SCROLL}px.`)
+    console.info(`Sequence initialized: ${frames.length} frames; progress bound to section scroll.`)
   }
 
   function fadeCanvas(target) {
     gsap.to(canvas, { opacity: target, duration: 0.6, ease: 'power2.out' })
   }
 
-  // Initially hidden until sequence section pins
+  // Initially hidden; will fade in as section progress increases
   canvas.style.opacity = 0
 
   const ro = new ResizeObserver(() => resizeCanvas())
@@ -252,26 +252,31 @@ for (let i = 0; i < heroFadeNodeList.length; i++) {
   const blocks = section.querySelectorAll('.sequence-slides .text-block')
   if (!blocks.length) return
 
-  // Create a scrubbed timeline which fades each block in and out sequentially
+  // Reveal one block at a time using class toggles (ensure first is visible immediately)
+  for (let i = 0; i < blocks.length; i++) blocks[i].classList.remove('is-visible')
+  blocks[0].classList.add('is-visible')
+  // Also forcibly set inline style so opacity isn't zero if CSS is overridden
+  blocks[0].style.opacity = '1'
+  blocks[0].style.transform = 'translateY(0)'
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: section,
-      start: 'top top',
-      end: '+=4000', // keep in sync with SCENE_SCROLL
+      start: 'top center',
+      end: 'bottom center',
       scrub: true,
-      markers: false,
     },
     defaults: { ease: 'power2.out' },
   })
 
-  const step = 1
+  const seg = 1 / blocks.length
   for (let i = 0; i < blocks.length; i++) {
     const el = blocks[i]
-    // Set initial state
-    gsap.set(el, { opacity: 0, y: 40 })
-    // At time i*step, fade in, hold briefly, then fade out
-    tl.to(el, { opacity: 1, y: 0, duration: 0.35 }, i * step)
-      .to(el, { opacity: 0, y: -20, duration: 0.35 }, i * step + 0.65)
+    const t = i * seg
+    tl.add(() => {
+      for (let j = 0; j < blocks.length; j++) blocks[j].classList.remove('is-visible')
+      el.classList.add('is-visible')
+    }, t)
   }
 })()
 
