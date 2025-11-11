@@ -1,4 +1,4 @@
-import { gsap, ScrollTrigger } from '../gsapSetup.js';
+import { ScrollTrigger } from '../gsapSetup.js';
 
 export function initScrollSequence() {
   const section = document.getElementById('sequence');
