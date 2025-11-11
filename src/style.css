@@ -15,3 +15,31 @@ html, body {
 /* Micro-optimizations for animated layers */
 .will-change-transform { will-change: transform; }
 .will-change-opacity { will-change: opacity; }
+
+/* Background sequence canvas sits behind everything */
+#bg-sequence {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none; /* keep interactions on content */
+  background: #0a0a0a; /* fallback while first frame loads */
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+/* Ensure canvas fills its sticky wrapper */
+#sequence .sequence-canvas-wrapper { position: relative; }
+#sequence .sequence-canvas-wrapper #bg-sequence { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Subtle, large box shadow to increase contrast for text blocks */
+.shadow-contrast {
+  /* big soft shadow for contrast on busy background */
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    0 2px 12px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(2px);
+}
+
+/* Responsive tweaks for long content readability */
+.text-block p { line-height: 1.75; color: #d4d4d8; }
+
