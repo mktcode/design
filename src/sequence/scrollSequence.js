@@ -3,7 +3,9 @@ import { ScrollTrigger } from '../gsapSetup.js';
 export function initScrollSequence() {
   const section = document.getElementById('sequence');
   const canvas = section ? section.querySelector('#bg-sequence') : null;
-  if (!canvas) return;
+  const overlay = section ? section.querySelector('#bg-sequence-overlay') : null;
+
+  if (!canvas || !overlay) return;
   const ctx = canvas.getContext('2d');
 
   // Make canvas match device pixel ratio for crisp rendering
@@ -117,10 +119,11 @@ export function initScrollSequence() {
         }
         const ramp = (x, a, b) => Math.max(0, Math.min(1, (x - a) / (b - a)));
         // Slow fade: take ~5% of the section at each side to reach full opacity
-        const fadeIn = ramp(p, 0.0, 0.05);
-        const fadeOut = ramp(1 - p, 0.0, 0.05);
-        const opacity = Math.min(Math.min(fadeIn, fadeOut), 0.9);
-        canvas.style.opacity = opacity;
+        const fadeIn = ramp(p, 0.0, 0.35);
+        const fadeOut = ramp(1 - p, 0.0, 0.35);
+        const opacity = Math.min(fadeIn, fadeOut);
+        canvas.style.opacity = Math.min(opacity, 0.5);
+        overlay.style.opacity = Math.min(opacity, 0.8);
       },
     });
 

@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   pointer-events: none;
   /* keep interactions on content */
-  background: #0a0a0a;
+  background: var(--color-brand);
   /* fallback while first frame loads */
   opacity: 0;
   transition: opacity .4s ease;

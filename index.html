@@ -9,9 +9,9 @@
 </head>
 
 <body class="bg-white text-(--color-brand) antialiased">
-  <header class="fixed inset-x-0 top-0 z-50 text-white/80 flex flex-col items-center py-4">
-    <img src="./assets/img/logo-darum.webp" alt="Darum Logo" class="w-18 h-auto drop-shadow-2xl drop-shadow-white/50" />
-    <h1 class="mt-4 -rotate-6 italic text-3xl">Schlehbaumhof</h1>
+  <header class="fixed inset-x-0 top-0 z-50 text-white flex flex-col items-center py-12">
+    <img src="./assets/img/logo-darum.webp" alt="Darum Logo" class="w-24 h-auto drop-shadow-2xl drop-shadow-white/50" />
+    <h1 class="mt-4 -rotate-6 italic text-4xl font-bold">Schlehbaumhof</h1>
   </header>
 
   <main id="app">
@@ -29,7 +29,7 @@
       <div class="mx-auto max-w-6xl grid grid-cols-2 gap-24">
         <div class="fade-in text-xl leading-relaxed">
           <h3 class="text-7xl font-bold">Herzlich Willkommen!</h3>
-          <p class="mt-8 fade-in">
+          <p class="mt-12 fade-in">
             Schön, dass Sie uns auf dem Schlehbaumhof besuchen. Hier können Sie sich über unseren Hof, unsere Tierhaltung und unseren Hofladen informieren.
           </p>
           <p class="mt-2 fade-in">
@@ -56,7 +56,7 @@
 
     <section id="products" class="px-6 pb-48">
       <div class="mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <h2 class="col-span-full text-5xl font-bold mb-12 text-center fade-in">Unsere Produkte</h2>
+        <h2 class="col-span-full text-7xl font-bold mb-12 text-center fade-in">Unsere Produkte</h2>
         <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
           <div class="relative h-56 z-10">
             <img src="./assets/img/produkte/produkt1.jpg" alt="Produkt 1" class="w-full h-full object-cover" />
@@ -161,7 +161,7 @@
       </div>
     </section>
 
-    <section id="section2" class="pt-48 px-6">
+    <section id="section2" class="py-48 px-6">
       <div class="mx-auto max-w-6xl grid grid-cols-2 gap-24">
         <div class="fade-in text-xl leading-relaxed">
           <h3 class="text-7xl font-bold">Von der Aufzucht...</h3>
@@ -193,7 +193,8 @@
     <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
     <section id="sequence" class="relative -mt-96 min-h-[300vh]">
       <div class="sticky top-0 h-screen">
-        <canvas id="bg-sequence" class="w-full h-full"></canvas>
+        <div id="bg-sequence-overlay" class="absolute inset-0 bg-(--color-brand) opacity-0 will-change-opacity z-10"></div>
+        <canvas id="bg-sequence" class="w-full h-full brightness-50"></canvas>
       </div>
       <div class="sequence-slides sticky top-24 container mx-auto text-2xl">
         <div class="text-block">
