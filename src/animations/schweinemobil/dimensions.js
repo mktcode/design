@@ -14,41 +14,51 @@ export function createDimensions(state, { baseImg, stage, svg }) {
     { a: { x: 0.94, y: 0.18 }, b: { x: 0.94, y: 0.84 }, value: 250, orient: 'v' },
   ];
   const RED = '#e11d48';
+  const LINE = 2; // px thickness
   state.dimensions = specs.map((spec) => {
-    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('fill', 'none');
-    path.setAttribute('stroke', RED);
-    path.setAttribute('stroke-width', '2');
-    path.setAttribute('stroke-linecap', 'round');
-    path.setAttribute('stroke-linejoin', 'round');
-    const tick1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    const tick2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    for (const t of [tick1, tick2]) {
-      t.setAttribute('fill', 'none');
-      t.setAttribute('stroke', RED);
-      t.setAttribute('stroke-width', '2');
-      t.setAttribute('stroke-linecap', 'round');
-    }
-    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    label.setAttribute('fill', RED);
-    label.setAttribute('font-size', '14');
-    label.setAttribute('font-family', 'Montserrat, Arial, sans-serif');
-    label.setAttribute('text-anchor', 'middle');
-    label.setAttribute('dominant-baseline', 'middle');
+    const g = document.createElement('div');
+    Object.assign(g.style, {
+      position: 'absolute', left: '0', top: '0', width: '100%', height: '100%', pointerEvents: 'none',
+    });
+
+    const makeLine = () => {
+      const el = document.createElement('div');
+      Object.assign(el.style, {
+        position: 'absolute', background: RED,
+        width: '0px', height: '0px', opacity: '0', willChange: 'transform, width, height, opacity',
+      });
+      return el;
+    };
+
+    const path = makeLine();
+    const tick1 = makeLine();
+    const tick2 = makeLine();
+
+    const label = document.createElement('div');
     label.textContent = `${spec.value} cm`;
+    Object.assign(label.style, {
+      position: 'absolute', color: RED, fontSize: '14px', fontFamily: 'Montserrat, Arial, sans-serif',
+      whiteSpace: 'nowrap', transform: 'translate(-50%, -50%)', transformOrigin: '50% 50%', opacity: '0', pointerEvents: 'none',
+    });
 
     g.appendChild(path); g.appendChild(tick1); g.appendChild(tick2); g.appendChild(label);
-    svg.appendChild(g);
-    // Start fully invisible until we can compute lengths after base image is laid out
-    path.style.opacity = '0';
-    tick1.style.opacity = '0';
-    tick2.style.opacity = '0';
-    label.style.opacity = '0';
-    return { spec, path, tick1, tick2, label };
+    stage.appendChild(g);
+    return { spec, path, tick1, tick2, label, _container: g, _LINE: LINE };
   });
   layoutDimensions(state, { baseImg, stage });
-  if (baseImg.complete) primeDimensionStates(state);
+  if (baseImg.complete) {
+    primeDimensionStates(state);
+  } else {
+    // Ensure we prime once the image is ready so lengths are valid
+    baseImg.addEventListener(
+      'load',
+      () => {
+        layoutDimensions(state, { baseImg, stage });
+        primeDimensionStates(state);
+      },
+      { once: true }
+    );
+  }
 }
 
 export function layoutDimensions(state, { baseImg, stage }) {
@@ -62,83 +72,88 @@ export function layoutDimensions(state, { baseImg, stage }) {
   for (const d of state.dimensions) {
     const { a, b, orient } = d.spec;
     const A = toStage(a), B = toStage(b);
-    d.path.setAttribute('d', `M ${A.x} ${A.y} L ${B.x} ${B.y}`);
+    // Main line sizing/position
+    const LINE = d._LINE || 2;
+    if (orient === 'h') {
+      const left = Math.min(A.x, B.x);
+      const top = A.y - LINE / 2;
+      const width = Math.abs(B.x - A.x);
+      Object.assign(d.path.style, { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${LINE}px` });
+      d._axis = 'x';
+    } else {
+      const left = A.x - LINE / 2;
+      const top = Math.min(A.y, B.y);
+      const height = Math.abs(B.y - A.y);
+      Object.assign(d.path.style, { left: `${left}px`, top: `${top}px`, width: `${LINE}px`, height: `${height}px` });
+      d._axis = 'y';
+    }
+
     // Ticks perpendicular
+    const tick = 10;
+    if (orient === 'h') {
+      Object.assign(d.tick1.style, { left: `${A.x - LINE / 2}px`, top: `${A.y - tick}px`, width: `${LINE}px`, height: `${tick * 2}px` });
+      Object.assign(d.tick2.style, { left: `${B.x - LINE / 2}px`, top: `${B.y - tick}px`, width: `${LINE}px`, height: `${tick * 2}px` });
+      d._tickAxis = 'y';
+    } else {
+      Object.assign(d.tick1.style, { left: `${A.x - tick}px`, top: `${A.y - LINE / 2}px`, width: `${tick * 2}px`, height: `${LINE}px` });
+      Object.assign(d.tick2.style, { left: `${B.x - tick}px`, top: `${B.y - LINE / 2}px`, width: `${tick * 2}px`, height: `${LINE}px` });
+      d._tickAxis = 'x';
+    }
+
+    // Label placement with offset normal to the line
     const dx = B.x - A.x, dy = B.y - A.y; const len = Math.hypot(dx, dy) || 1;
-    const nx = -dy / len, ny = dx / len; const tick = 10;
-    const t1a = { x: A.x + nx * tick, y: A.y + ny * tick }; const t1b = { x: A.x - nx * tick, y: A.y - ny * tick };
-    const t2a = { x: B.x + nx * tick, y: B.y + ny * tick }; const t2b = { x: B.x - nx * tick, y: B.y - ny * tick };
-    d.tick1.setAttribute('d', `M ${t1a.x} ${t1a.y} L ${t1b.x} ${t1b.y}`);
-    d.tick2.setAttribute('d', `M ${t2a.x} ${t2a.y} L ${t2b.x} ${t2b.y}`);
-    const mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2; const off = 14;
-    d.label.setAttribute('x', (mx + nx * off)); d.label.setAttribute('y', (my + ny * off));
-    if (orient === 'v') d.label.setAttribute('transform', `rotate(-90 ${mx + nx * off} ${my + ny * off})`);
-    else d.label.removeAttribute('transform');
+    const nx = -dy / len, ny = dx / len; const off = 14;
+    const mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
+    labelSetPos(d.label, mx + nx * off, my + ny * off, orient);
   }
 }
 
 export function primeDimensionStates(state) {
   // Keep opacity 0 until animation actually starts, avoid tiny visible caps.
   state.dimensions.forEach((d) => {
-    const L = safeLength(d.path);
-    const L1 = safeLength(d.tick1);
-    const L2 = safeLength(d.tick2);
-    // Prime main dimension line
-    gsap.set(d.path, { opacity: 0, strokeDasharray: `${L} ${L}`, strokeDashoffset: L });
-    // Prime tick marks so they can be drawn too
-    gsap.set(d.tick1, { opacity: 0, strokeDasharray: `${L1} ${L1}`, strokeDashoffset: L1 });
-    gsap.set(d.tick2, { opacity: 0, strokeDasharray: `${L2} ${L2}`, strokeDashoffset: L2 });
+    // Prime main line and ticks to grow from 0 to 1 along their axis
+    if (d._axis === 'x') {
+      gsap.set(d.path, { opacity: 0, scaleX: 0, transformOrigin: 'left center' });
+    } else {
+      gsap.set(d.path, { opacity: 0, scaleY: 0, transformOrigin: 'center top' });
+    }
+    if (d._tickAxis === 'x') {
+      gsap.set([d.tick1, d.tick2], { opacity: 0, scaleX: 0, transformOrigin: 'center center' });
+    } else {
+      gsap.set([d.tick1, d.tick2], { opacity: 0, scaleY: 0, transformOrigin: 'center center' });
+    }
     gsap.set(d.label, { opacity: 0, y: 4 });
   });
   state._dimPrimed = true;
 }
 
 export function animateDimensions(tl, state, { start = 0.2 }) {
+  // Guarantee primed state (length + dash setup) before we animate
+  if (!state._dimPrimed) {
+    primeDimensionStates(state);
+  }
   const step = 0.18;
   let end = start;
   state.dimensions.forEach((d, i) => {
     const t = start + i * step;
-    const L = safeLength(d.path);
-    const L1 = safeLength(d.tick1);
-    const L2 = safeLength(d.tick2);
-
-    // Draw the main dimension line (no fade; flip opacity on instantly to avoid cap flicker)
-    if (L > 0) {
-      // Prevent initial dot from round caps by using butt during draw
-      tl.set(d.path, { attr: { 'stroke-linecap': 'butt' } }, t);
-      // Ensure correct dash pattern and show, then animate offset to 0
-      tl.set(d.path, { opacity: 1, strokeDasharray: `${L} ${L}`, strokeDashoffset: L }, t);
-      tl.to(
-        d.path,
-        { strokeDashoffset: 0, duration: 0.7, ease: 'power2.out' },
-        t
-      );
-      // Restore round caps after the line is fully drawn
-      tl.set(d.path, { attr: { 'stroke-linecap': 'round' } }, t + 0.7);
+    // Draw the main line by growing width/height via scale
+    if (d._axis === 'x') {
+      tl.set(d.path, { opacity: 1 }, t);
+      tl.to(d.path, { scaleX: 1, duration: 0.7, ease: 'power2.out' }, t);
     } else {
-      // Fallback if length can't be measured
-      tl.set(d.path, { strokeDasharray: 'none', strokeDashoffset: 0 }, t);
-      tl.fromTo(d.path, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out', immediateRender: false }, t);
+      tl.set(d.path, { opacity: 1 }, t);
+      tl.to(d.path, { scaleY: 1, duration: 0.7, ease: 'power2.out' }, t);
     }
 
-    // Draw tick marks
-    if (L1 > 0) {
-      tl.set(d.tick1, { attr: { 'stroke-linecap': 'butt' } }, t + 0.12);
-      tl.set(d.tick1, { opacity: 1, strokeDasharray: `${L1} ${L1}`, strokeDashoffset: L1 }, t + 0.12);
-      tl.to(d.tick1, { strokeDashoffset: 0, duration: 0.25, ease: 'power2.out' }, t + 0.12);
-      tl.set(d.tick1, { attr: { 'stroke-linecap': 'round' } }, t + 0.12 + 0.25);
+    // Draw tick marks similarly
+    if (d._tickAxis === 'x') {
+      tl.set([d.tick1, d.tick2], { opacity: 1 }, t + 0.12);
+      tl.to(d.tick1, { scaleX: 1, duration: 0.25, ease: 'power2.out' }, t + 0.12);
+      tl.to(d.tick2, { scaleX: 1, duration: 0.25, ease: 'power2.out' }, t + 0.18);
     } else {
-      tl.set(d.tick1, { strokeDasharray: 'none', strokeDashoffset: 0 }, t + 0.12);
-      tl.fromTo(d.tick1, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'power2.out', immediateRender: false }, t + 0.12);
-    }
-    if (L2 > 0) {
-      tl.set(d.tick2, { attr: { 'stroke-linecap': 'butt' } }, t + 0.18);
-      tl.set(d.tick2, { opacity: 1, strokeDasharray: `${L2} ${L2}`, strokeDashoffset: L2 }, t + 0.18);
-      tl.to(d.tick2, { strokeDashoffset: 0, duration: 0.25, ease: 'power2.out' }, t + 0.18);
-      tl.set(d.tick2, { attr: { 'stroke-linecap': 'round' } }, t + 0.18 + 0.25);
-    } else {
-      tl.set(d.tick2, { strokeDasharray: 'none', strokeDashoffset: 0 }, t + 0.18);
-      tl.fromTo(d.tick2, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'power2.out', immediateRender: false }, t + 0.18);
+      tl.set([d.tick1, d.tick2], { opacity: 1 }, t + 0.12);
+      tl.to(d.tick1, { scaleY: 1, duration: 0.25, ease: 'power2.out' }, t + 0.12);
+      tl.to(d.tick2, { scaleY: 1, duration: 0.25, ease: 'power2.out' }, t + 0.18);
     }
     // Label fade/slide
     tl.fromTo(
@@ -154,4 +169,14 @@ export function animateDimensions(tl, state, { start = 0.2 }) {
 
 function safeLength(path) {
   try { return path.getTotalLength(); } catch { return 0; }
+}
+
+// Place label at absolute page coords inside stage, centered, and rotate for vertical
+function labelSetPos(el, x, y, orient) {
+  Object.assign(el.style, { left: `${x}px`, top: `${y}px` });
+  if (orient === 'v') {
+    el.style.transform = 'translate(-50%, -50%) rotate(-90deg)';
+  } else {
+    el.style.transform = 'translate(-50%, -50%)';
+  }
 }
