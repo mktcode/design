@@ -17,11 +17,10 @@ export function initParallaxSection1() {
   // Ensure ScrollTrigger is registered (done in gsapSetup) and refresh on resize
   items.forEach((el) => {
     const speed = parseFloat(el.getAttribute('data-speed')) || 0.2;
-    const rotateTarget = parseFloat(el.getAttribute('data-rotate')) || 0;
     // Animate position + rotation for more visible tilt emerging with scroll
     gsap.fromTo(
       el,
-      { y: 0, rotate: 0 },
+      { y: 0 },
       {
         y: () => -window.innerHeight * speed,
         ease: 'none',
