@@ -232,10 +232,19 @@ export function initSchweinemobil() {
 		}
 		state.items = items;
 
-		// Initial geometry layout
-		layoutPaths();
-		layoutDimensions();
-		layoutCaptions();
+			// Initial geometry layout and zero states
+			layoutPaths();
+			layoutDimensions();
+			// Hide dimension elements until timeline begins to avoid artifacts
+			state.dimensions.forEach((d) => {
+				const L = pathLength(d.path);
+				gsap.set(d.path, { opacity: 1, strokeDasharray: L, strokeDashoffset: L + 8 });
+				gsap.set([d.tick1, d.tick2], { opacity: 1, strokeDasharray: 20, strokeDashoffset: 20 });
+				// Set label text upfront to avoid count artifacts on reverse
+				d.label.textContent = `${d.value} cm`;
+				gsap.set(d.label, { opacity: 0, y: 4 });
+			});
+			layoutCaptions();
 
 		// Build timeline
 		const totalSteps = Math.max(1, state.items.length);
@@ -257,53 +266,28 @@ export function initSchweinemobil() {
 		// Base image slow fade-in
 		tl.to(baseImg, { opacity: 1, duration: 0.8 }, 0);
 
-		// Animate dimensions (lines + ticks + numbers) before photos
-		const dimStep = 0.18;
-		state.dimensions.forEach((d, i) => {
-			const t = 0.25 + i * dimStep;
-			const L = pathLength(d.path);
-			// Prime dashes
-			gsap.set(d.path, { strokeDasharray: L, strokeDashoffset: L + 4, opacity: 1 });
-			gsap.set([d.tick1, d.tick2], { strokeDasharray: 20, strokeDashoffset: 20, opacity: 1 });
-			// Draw main line
-			tl.fromTo(
-				d.path,
-				{ strokeDashoffset: L + 4 },
-				{ strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' },
-				t
-			);
-			// Pop in ticks
-			tl.fromTo(
-				[d.tick1, d.tick2],
-				{ strokeDashoffset: 20 },
-				{ strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' },
-				t + 0.1
-			);
-			// Animate number (count up) and fade/slide text
-			tl.fromTo(
-				d.label,
-				{ opacity: 0, y: 4 },
-				{ opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' },
-				t + 0.25
-			);
-			const target = d.value;
-			const obj = { v: 0 };
-			tl.to(obj, {
-				duration: 0.6,
-				v: target,
-				snap: { v: 1 },
-				ease: 'power1.out',
-				onUpdate: () => {
-					const val = Math.round(obj.v);
-					d.label.textContent = `${val} cm`;
-				},
-			}, t + 0.25);
-		});
+				// Animate dimensions (lines + ticks + labels) before photos
+				const dimStep = 0.18;
+				let dimsEnd = 0;
+				state.dimensions.forEach((d, i) => {
+					const t = 0.20 + i * dimStep; // start earlier
+					const L = pathLength(d.path);
+					// Draw main line
+					tl.to(d.path, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' }, t);
+					// Pop in ticks
+					tl.to([d.tick1, d.tick2], { strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' }, t + 0.1);
+					// Fade/slide label (no counting)
+					tl.to(d.label, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, t + 0.25);
+					const endT = t + 0.25 + 0.35; // last label finish
+					if (endT > dimsEnd) dimsEnd = endT;
+				});
+				const dimsDoneTime = dimsEnd;
+				tl.add('dimsDone', dimsDoneTime);
 
-		// Stagger details
-			const step = 0.55; // timeline units for each photo sequence
+			// Stagger details (start only after dimensions finished)
+							const step = 0.55; // timeline units for each photo sequence
 		state.items.forEach((it, i) => {
-			const t = 0.8 + i * step; // start after base fade
+						const t = (dimsDoneTime || 0.95) + 0.35 + i * step; // enforce clear gap after dimensions
 				const L = pathLength(it.line);
 				const Ls = pathLength(it.lineShadow);
 			// Prepare dashes (hide completely before draw)
@@ -322,12 +306,12 @@ export function initSchweinemobil() {
 			tl.fromTo(
 				it.imgEl,
 				{ opacity: 0, x: enterOffset.x, y: enterOffset.y },
-				{ opacity: 1, x: 0, y: 0, duration: 0.6, ease: 'power3.out' },
+				{ opacity: 1, x: 0, y: 0, duration: 0.6, ease: 'power3.out', immediateRender: false },
 				t
 				).fromTo(
 					[it.lineShadow, it.line],
-					{ opacity: 0, strokeDashoffset: (idx) => (idx === 0 ? Ls + 6 : L + 6) },
-					{ opacity: 1, strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' },
+				{ opacity: 0, strokeDashoffset: (idx) => (idx === 0 ? Ls + 6 : L + 6) },
+				{ opacity: 1, strokeDashoffset: 0, duration: 0.8, ease: 'power2.out', immediateRender: false },
 					t + 0.1
 				);
 
@@ -339,7 +323,7 @@ export function initSchweinemobil() {
 				tl.fromTo(
 					it.captionEl,
 					{ opacity: 0, x: capEnter.x, y: capEnter.y },
-					{ opacity: 1, x: 0, y: 0, duration: 0.4, ease: 'power2.out' },
+					{ opacity: 1, x: 0, y: 0, duration: 0.4, ease: 'power2.out', immediateRender: false },
 					t + 0.14
 				);
 			}

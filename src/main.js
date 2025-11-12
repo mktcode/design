@@ -6,7 +6,7 @@ import { initFadeIn } from './animations/fadeIn.js'
 import { initHeroParallax } from './animations/heroParallax.js'
 import { initParallaxSection1 } from './animations/parallaxSection1.js'
 import { initParallaxSection2 } from './animations/parallaxSection2.js'
-import { initSchweinemobil } from './animations/schweinemobil.js'
+import { initSchweinemobil } from './animations/schweinemobil/index.js'
 import { initScrollSequence } from './sequence/scrollSequence.js'
 import { initSequenceSlides } from './sequence/sequenceSlides.js'
 
