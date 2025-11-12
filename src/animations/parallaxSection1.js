@@ -24,7 +24,6 @@ export function initParallaxSection1() {
       { y: 0, rotate: 0 },
       {
         y: () => -window.innerHeight * speed,
-        rotate: rotateTarget,
         ease: 'none',
         scrollTrigger: {
           trigger: '#welcome',

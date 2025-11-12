@@ -27,8 +27,9 @@
     <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
       <!-- Parallax background layer (fixed to viewport) restored -->
       <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
-        <img src="./assets/img/schweinemobil-focus.jpg" alt="" aria-hidden="true"
-          class="hero-bg h-full w-full object-cover will-change-transform" />
+        <video class="hero-bg h-full w-full object-cover will-change-transform" aria-hidden="true" playsinline autoplay muted loop preload="auto" poster="./assets/img/schweinemobil-focus.jpg">
+          <source src="./assets/video/hero.webm" type="video/webm" />
+        </video>
         <div class="hero-overlay absolute inset-0 bg-white opacity-0 will-change-opacity"></div>
       </div>
       <div class="text-center drop-shadow-[0_50px_50px_rgb(0_0_0/0.15)] drop-shadow-white/40">
@@ -238,7 +239,7 @@
         <p class="text-lg mb-8">Abonnieren Sie unseren Newsletter und verpassen Sie keine Neuigkeiten, Angebote und Veranstaltungen rund um den Schlehbaumhof.</p>
         <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 justify-center">
           <input type="email" placeholder="Ihre E-Mail-Adresse" required
-            class="w-full sm:w-auto flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand)/50" />
+            class="w-full sm:w-auto grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand)/50" />
           <button type="submit"
             class="bg-white text-(--color-brand) font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50 transition-colors">
             Abonnieren
