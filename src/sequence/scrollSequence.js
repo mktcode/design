@@ -119,7 +119,7 @@ export function initScrollSequence() {
         // Slow fade: take ~35% of the section at each side to reach full opacity
         const fadeIn = ramp(p, 0.0, 0.35);
         const fadeOut = ramp(1 - p, 0.0, 0.35);
-        const opacity = Math.min(fadeIn, fadeOut);
+        const opacity = Math.min(Math.min(fadeIn, fadeOut), 0.9);
         canvas.style.opacity = opacity;
       },
     });

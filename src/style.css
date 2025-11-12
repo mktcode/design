@@ -65,7 +65,7 @@ body {
   transition: opacity .4s ease, transform .4s ease;
   background-color: white;
   padding: 2.5rem;
-  border-radius: 2.5rem;
+  border-radius: 1.5rem;
 }
 
 #sequence .sequence-slides .text-block.is-visible {

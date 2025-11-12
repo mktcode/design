@@ -16,8 +16,8 @@ export function initFadeIn() {
           delay: i * 0.12,
           scrollTrigger: {
             trigger: el,
-            start: 'top 80%',
-            end: 'bottom 25%',
+            start: 'top bottom',
+            end: 'bottom top',
             toggleActions: 'play none none reverse',
           },
         }

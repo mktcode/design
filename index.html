@@ -62,7 +62,7 @@
           <img src="./assets/img/hofladen.jpg" alt="Hofladen" class="parallax-item p2 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.28" data-rotate="4" />
           <!-- Back image (fastest) -->
           <img src="./assets/img/hof-gelbe-blumen.jpg" alt="Hofwiese mit gelben Blumen" class="parallax-item p3 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.55" data-rotate="-3" />
-          <button class="absolute bottom-1/3 left-1/2 -translate-x-1/2 bg-(--color-brand) text-white font-semibold px-8 py-4 rounded-full shadow-md shadow-black/10 transition-all text-xl hover:bg-(--color-brand)/90 hover:shadow-black/20 hover:shadow-xl duration-500 cursor-pointer">
+          <button class="absolute bottom-1/3 left-1/2 -translate-x-1/2 bg-(--color-brand) text-white font-semibold px-8 py-4 rounded-xl shadow-md shadow-black/10 transition-all text-xl hover:bg-(--color-brand)/90 hover:shadow-black/20 hover:shadow-xl duration-500 cursor-pointer">
             Bildergalerie
           </button>
         </div>
@@ -168,6 +168,12 @@
           </div>
         </article>
       </div>
+
+      <div class="mt-12 text-center fade-in">
+        <button id="load-more-products" class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50 transition-colors">
+          Mehr Produkte
+        </button>
+      </div>
     </section>
 
     <section id="section2" class="pt-48 px-6">
@@ -192,7 +198,7 @@
           <img src="./assets/img/hofladen.jpg" alt="Hofladen" class="parallax-item p2 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.28" data-rotate="4" />
           <!-- Back image (fastest) -->
           <img src="./assets/img/hof-gelbe-blumen.jpg" alt="Hofwiese mit gelben Blumen" class="parallax-item p3 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.55" data-rotate="-3" />
-          <button class="absolute bottom-1/3 left-1/2 -translate-x-1/2 bg-(--color-brand) text-white font-semibold px-8 py-4 rounded-full shadow-md shadow-black/10 transition-all text-xl hover:bg-(--color-brand)/90 hover:shadow-black/20 hover:shadow-xl duration-500 cursor-pointer">
+          <button class="absolute bottom-1/3 left-1/2 -translate-x-1/2 bg-(--color-brand) text-white font-semibold px-8 py-4 rounded-xl shadow-md shadow-black/10 transition-all text-xl hover:bg-(--color-brand)/90 hover:shadow-black/20 hover:shadow-xl duration-500 cursor-pointer">
             Bildergalerie
           </button>
         </div>
@@ -205,24 +211,39 @@
         <canvas id="bg-sequence" class="w-full h-full"></canvas>
       </div>
       <div class="sequence-slides sticky top-24 container mx-auto text-2xl">
-        <div class="text-block fade-in">
+        <div class="text-block">
           <h3 class="text-5xl font-semibold mb-3">Bunte Bentheimer Schweine</h3>
           <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
             Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis
             natoque penatibus et magnis dis parturient montes.</p>
         </div>
-        <div class="text-block fade-in">
+        <div class="text-block">
           <h3 class="text-5xl font-semibold mb-3">Consectetur adipiscing elit</h3>
           <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur
             blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet
             fermentum.</p>
         </div>
-        <div class="text-block fade-in">
+        <div class="text-block">
           <h3 class="text-5xl font-semibold mb-3">Aenean lacinia bibendum</h3>
           <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor
             ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
             Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
         </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="px-6 py-24 bg-(--color-brand) text-white">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-5xl font-bold mb-6">Bleiben Sie auf dem Laufenden!</h2>
+        <p class="text-lg mb-8">Abonnieren Sie unseren Newsletter und verpassen Sie keine Neuigkeiten, Angebote und Veranstaltungen rund um den Schlehbaumhof.</p>
+        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 justify-center">
+          <input type="email" placeholder="Ihre E-Mail-Adresse" required
+            class="w-full sm:w-auto flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-(--color-brand)/50" />
+          <button type="submit"
+            class="bg-white text-(--color-brand) font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50 transition-colors">
+            Abonnieren
+          </button>
+        </form>
       </div>
     </section>
 
