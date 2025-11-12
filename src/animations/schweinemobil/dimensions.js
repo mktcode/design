@@ -9,9 +9,9 @@ import { gsap } from '../../gsapSetup.js';
 export function createDimensions(state, { baseImg, stage, svg }) {
   // Specs in normalized (0..1) coords inside the base image
   const specs = [
-    { a: { x: 0.185, y: 0.83 }, b: { x: 0.335, y: 0.83 }, value: 292, orient: 'h' },
-    { a: { x: 0.455, y: 0.40 }, b: { x: 0.455, y: 0.82 }, value: 250, orient: 'v' },
-    { a: { x: 0.915, y: 0.42 }, b: { x: 0.915, y: 0.84 }, value: 250, orient: 'v' },
+    { a: { x: 0, y: 0.93 }, b: { x: 0.233, y: 0.93 }, value: 292, orient: 'h' },
+    { a: { x: 0.33, y: 0.09 }, b: { x: 0.33, y: 0.82 }, value: 250, orient: 'v' },
+    { a: { x: 0.94, y: 0.18 }, b: { x: 0.94, y: 0.84 }, value: 250, orient: 'v' },
   ];
   const RED = '#e11d48';
   state.dimensions = specs.map((spec) => {
