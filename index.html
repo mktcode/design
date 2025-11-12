@@ -9,13 +9,16 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
-  <header class="sticky top-0 z-50 backdrop-blur supports-backdrop-filter:bg-white-950/60">
-    <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between text-white">
+  <header class="fixed inset-x-0 top-0 z-50 text-white">
+    <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
       <nav class="hidden md:flex gap-6 text-xl w-full">
         <a href="#hero" class="hover:text-(--color-brand) transition-colors">Home</a>
         <a href="#features" class="hover:text-(--color-brand) transition-colors">Features</a>
         <a href="#products" class="hover:text-(--color-brand) transition-colors">Products</a>
-        <a href="#cart" class="hover:text-(--color-brand) transition-colors ml-auto">Warenkorb</a>
+        <a href="#cart" class="hover:text-(--color-brand) transition-colors ml-auto">
+          Warenkorb
+          <span id="cart-count" class="ml-2 text-inherit text-sm font-semibold px-2 py-1 rounded-full">0</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -37,7 +40,7 @@
       </div>
     </section>
 
-    <section id="features" class="px-6">
+    <section id="welcome" class="px-6">
       <div class="mx-auto max-w-6xl grid grid-cols-2 gap-24">
         <div class="fade-in text-xl leading-relaxed">
           <h3 class="text-7xl font-bold">Herzlich Willkommen!</h3>
@@ -60,46 +63,20 @@
           <!-- Back image (fastest) -->
           <img src="./assets/img/hof-gelbe-blumen.jpg" alt="Hofwiese mit gelben Blumen" class="parallax-item p3 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.55" data-rotate="-3" />
           <button class="absolute bottom-1/3 left-1/2 -translate-x-1/2 bg-(--color-brand) text-white font-semibold px-8 py-4 rounded-full shadow-md shadow-black/10 transition-all text-xl hover:bg-(--color-brand)/90 hover:shadow-black/20 hover:shadow-xl duration-500 cursor-pointer">
-            Zum Hofladen
+            Bildergalerie
           </button>
         </div>
       </div>
     </section>
 
-    <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
-    <section id="sequence" class="relative -mt-96 min-h-[500vh]">
-      <div class="sticky top-0 h-screen">
-        <canvas id="bg-sequence" class="w-full h-full"></canvas>
-      </div>
-      <div class="sequence-slides sticky top-24 container mx-auto text-2xl">
-        <div class="text-block">
-          <h3 class="text-5xl font-semibold mb-3">Bunte Bentheimer Schweine</h3>
-          <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
-            Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis
-            natoque penatibus et magnis dis parturient montes.</p>
-        </div>
-        <div class="text-block">
-          <h3 class="text-5xl font-semibold mb-3">Consectetur adipiscing elit</h3>
-          <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur
-            blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet
-            fermentum.</p>
-        </div>
-        <div class="text-block">
-          <h3 class="text-5xl font-semibold mb-3">Aenean lacinia bibendum</h3>
-          <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor
-            ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
-            Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="products" class="py-24 px-6">
+    <section id="products" class="px-6 pb-48">
       <div class="mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <article class="group rounded-2xl overflow-hidden border border-neutral-200 shadow-lg hover:shadow-xl transition-shadow bg-white fade-in">
-          <div class="relative h-56">
+        <h2 class="col-span-full text-5xl font-bold mb-12 text-center fade-in">Unsere Produkte</h2>
+        <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
+          <div class="relative h-56 z-10">
             <img src="./assets/img/produkte/produkt1.jpg" alt="Produkt 1" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5">
+          <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
             <h4 class="text-xl font-semibold">Bio Schweinekotelett</h4>
             <p class="mt-2 text-neutral-600 text-sm">Zartes Kotelett vom Bunten Bentheimer Schwein – ideal für die Pfanne oder den Grill.</p>
             <div class="mt-4 flex items-center justify-between">
@@ -111,11 +88,11 @@
           </div>
         </article>
 
-        <article class="group rounded-2xl overflow-hidden border border-neutral-200 shadow-lg hover:shadow-xl transition-shadow bg-white fade-in">
+        <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
           <div class="relative h-56">
             <img src="./assets/img/produkte/produkt2.jpg" alt="Produkt 2" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5">
+          <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
             <h4 class="text-xl font-semibold">Hausmacher Bratwurst</h4>
             <p class="mt-2 text-neutral-600 text-sm">Traditionell gewürzt, knackig im Biss – perfekt für Pfanne oder Grillabende.</p>
             <div class="mt-4 flex items-center justify-between">
@@ -127,11 +104,11 @@
           </div>
         </article>
 
-        <article class="group rounded-2xl overflow-hidden border border-neutral-200 shadow-lg hover:shadow-xl transition-shadow bg-white fade-in">
+        <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
           <div class="relative h-56">
             <img src="./assets/img/produkte/produkt3.jpg" alt="Produkt 3" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5">
+          <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
             <h4 class="text-xl font-semibold">Schweinefilet</h4>
             <p class="mt-2 text-neutral-600 text-sm">Besonders mager und fein – für Kurzgebratenes, Medaillons oder festliche Gerichte.</p>
             <div class="mt-4 flex items-center justify-between">
@@ -143,11 +120,11 @@
           </div>
         </article>
 
-        <article class="group rounded-2xl overflow-hidden border border-neutral-200 shadow-lg hover:shadow-xl transition-shadow bg-white fade-in">
+        <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
           <div class="relative h-56">
             <img src="./assets/img/produkte/produkt4.jpg" alt="Produkt 4" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5">
+          <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
             <h4 class="text-xl font-semibold">Schweinebauch</h4>
             <p class="mt-2 text-neutral-600 text-sm">Saftig mit feiner Kruste – eignet sich hervorragend zum Schmoren oder Grillen.</p>
             <div class="mt-4 flex items-center justify-between">
@@ -159,11 +136,11 @@
           </div>
         </article>
 
-        <article class="group rounded-2xl overflow-hidden border border-neutral-200 shadow-lg hover:shadow-xl transition-shadow bg-white fade-in">
+        <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
           <div class="relative h-56">
             <img src="./assets/img/produkte/produkt5.jpg" alt="Produkt 5" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5">
+          <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
             <h4 class="text-xl font-semibold">Schinkenaufschnitt</h4>
             <p class="mt-2 text-neutral-600 text-sm">Aromatisch gereift – fein geschnitten für Brotzeit, Antipasti oder Snack.</p>
             <div class="mt-4 flex items-center justify-between">
@@ -175,11 +152,11 @@
           </div>
         </article>
 
-        <article class="group rounded-2xl overflow-hidden border border-neutral-200 shadow-lg hover:shadow-xl transition-shadow bg-white fade-in">
+        <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
           <div class="relative h-56">
             <img src="./assets/img/produkte/produkt6.jpg" alt="Produkt 6" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5">
+          <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
             <h4 class="text-xl font-semibold">Leberwurst im Glas</h4>
             <p class="mt-2 text-neutral-600 text-sm">Hausgemacht nach Familienrezept – streichzart und würzig.</p>
             <div class="mt-4 flex items-center justify-between">
@@ -190,6 +167,62 @@
             </div>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section id="section2" class="pt-48 px-6">
+      <div class="mx-auto max-w-6xl grid grid-cols-2 gap-24">
+        <div class="fade-in text-xl leading-relaxed">
+          <h3 class="text-7xl font-bold">Von der Aufzucht...</h3>
+          <p class="mt-8 fade-in">
+            Schön, dass Sie uns auf dem Schlehbaumhof besuchen. Hier können Sie sich über unseren Hof, unsere Tierhaltung und unseren Hofladen informieren.
+          </p>
+          <p class="mt-2 fade-in">
+            Im Herzen von Darum betreiben wir einen Hofladen, wo Sie die Erzeugnisse unserer ökologisch gehaltenen Schweine sowie weitere selbst erzeugte Produkte direkt erwerben können.
+            Wir bieten Ihnen frisches Fleisch sowie Wurstwaren, aber auch Hähnchen, Lammfleisch und Marmeladen zu fairen Preisen an.
+          </p>
+          <p class="mt-2 fade-in">
+            Wir freuen uns über Ihren persönlichen Besuch im Hofladen! Ausgewählte Produkte können Sie auch direkt online bestellen.
+          </p>
+        </div>
+        <div class="relative feature-parallax">
+          <!-- Front image (slowest) -->
+          <img src="./assets/img/peer.jpg" alt="Peer auf dem Hof" class="parallax-item p1 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.12" data-rotate="-6" />
+          <!-- Mid image -->
+          <img src="./assets/img/hofladen.jpg" alt="Hofladen" class="parallax-item p2 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.28" data-rotate="4" />
+          <!-- Back image (fastest) -->
+          <img src="./assets/img/hof-gelbe-blumen.jpg" alt="Hofwiese mit gelben Blumen" class="parallax-item p3 rounded-xl shadow-2xl shadow-black/30 aspect-video object-cover will-change-transform" data-speed="0.55" data-rotate="-3" />
+          <button class="absolute bottom-1/3 left-1/2 -translate-x-1/2 bg-(--color-brand) text-white font-semibold px-8 py-4 rounded-full shadow-md shadow-black/10 transition-all text-xl hover:bg-(--color-brand)/90 hover:shadow-black/20 hover:shadow-xl duration-500 cursor-pointer">
+            Bildergalerie
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
+    <section id="sequence" class="relative -mt-96 min-h-[500vh]">
+      <div class="sticky top-0 h-screen">
+        <canvas id="bg-sequence" class="w-full h-full"></canvas>
+      </div>
+      <div class="sequence-slides sticky top-24 container mx-auto text-2xl">
+        <div class="text-block fade-in">
+          <h3 class="text-5xl font-semibold mb-3">Bunte Bentheimer Schweine</h3>
+          <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
+            Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis
+            natoque penatibus et magnis dis parturient montes.</p>
+        </div>
+        <div class="text-block fade-in">
+          <h3 class="text-5xl font-semibold mb-3">Consectetur adipiscing elit</h3>
+          <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur
+            blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet
+            fermentum.</p>
+        </div>
+        <div class="text-block fade-in">
+          <h3 class="text-5xl font-semibold mb-3">Aenean lacinia bibendum</h3>
+          <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor
+            ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
+            Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        </div>
       </div>
     </section>
 
