@@ -253,5 +253,4 @@ export function initSchweinemobil() {
 	setup().catch((e) => console.error('Schweinemobil setup failed', e));
 }
 
-// Auto-init if section exists (friendly in modular setup)
-try { initSchweinemobil(); } catch {}
+	// Note: initialization is handled from main.js to avoid double inits
