@@ -10,7 +10,7 @@ export function createDimensions(state, { baseImg, stage, svg }) {
   // Specs in normalized (0..1) coords inside the base image
   const specs = [
     { a: { x: 0, y: 0.93 }, b: { x: 0.233, y: 0.93 }, value: 292, orient: 'h' },
-    { a: { x: 0.33, y: 0.09 }, b: { x: 0.33, y: 0.82 }, value: 250, orient: 'v' },
+    { a: { x: 0.33, y: 0.09 }, b: { x: 0.33, y: 0.82 }, value: 290, orient: 'v' },
     { a: { x: 0.94, y: 0.18 }, b: { x: 0.94, y: 0.84 }, value: 250, orient: 'v' },
   ];
   const RED = '#e11d48';
@@ -81,8 +81,13 @@ export function primeDimensionStates(state) {
   // Keep opacity 0 until animation actually starts, avoid tiny visible caps.
   state.dimensions.forEach((d) => {
     const L = safeLength(d.path);
-    gsap.set(d.path, { opacity: 0, strokeDasharray: L, strokeDashoffset: L });
-    gsap.set([d.tick1, d.tick2], { opacity: 0, strokeDasharray: 1, strokeDashoffset: 1 });
+    const L1 = safeLength(d.tick1);
+    const L2 = safeLength(d.tick2);
+    // Prime main dimension line
+    gsap.set(d.path, { opacity: 0, strokeDasharray: `${L} ${L}`, strokeDashoffset: L });
+    // Prime tick marks so they can be drawn too
+    gsap.set(d.tick1, { opacity: 0, strokeDasharray: `${L1} ${L1}`, strokeDashoffset: L1 });
+    gsap.set(d.tick2, { opacity: 0, strokeDasharray: `${L2} ${L2}`, strokeDashoffset: L2 });
     gsap.set(d.label, { opacity: 0, y: 4 });
   });
   state._dimPrimed = true;
@@ -94,28 +99,55 @@ export function animateDimensions(tl, state, { start = 0.2 }) {
   state.dimensions.forEach((d, i) => {
     const t = start + i * step;
     const L = safeLength(d.path);
-    // Path draw with opacity fade
-    tl.fromTo(
-      d.path,
-      { opacity: 0, strokeDasharray: L, strokeDashoffset: L },
-      { opacity: 1, strokeDashoffset: 0, duration: 0.6, ease: 'power2.out', immediateRender: false },
-      t
-    );
-    // Ticks appear (no dash draw needed, just fade) after slight delay
-    tl.fromTo(
-      [d.tick1, d.tick2],
-      { opacity: 0 },
-      { opacity: 1, duration: 0.3, ease: 'power2.out', immediateRender: false },
-      t + 0.15
-    );
+    const L1 = safeLength(d.tick1);
+    const L2 = safeLength(d.tick2);
+
+    // Draw the main dimension line (no fade; flip opacity on instantly to avoid cap flicker)
+    if (L > 0) {
+      // Prevent initial dot from round caps by using butt during draw
+      tl.set(d.path, { attr: { 'stroke-linecap': 'butt' } }, t);
+      // Ensure correct dash pattern and show, then animate offset to 0
+      tl.set(d.path, { opacity: 1, strokeDasharray: `${L} ${L}`, strokeDashoffset: L }, t);
+      tl.to(
+        d.path,
+        { strokeDashoffset: 0, duration: 0.7, ease: 'power2.out' },
+        t
+      );
+      // Restore round caps after the line is fully drawn
+      tl.set(d.path, { attr: { 'stroke-linecap': 'round' } }, t + 0.7);
+    } else {
+      // Fallback if length can't be measured
+      tl.set(d.path, { strokeDasharray: 'none', strokeDashoffset: 0 }, t);
+      tl.fromTo(d.path, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out', immediateRender: false }, t);
+    }
+
+    // Draw tick marks
+    if (L1 > 0) {
+      tl.set(d.tick1, { attr: { 'stroke-linecap': 'butt' } }, t + 0.12);
+      tl.set(d.tick1, { opacity: 1, strokeDasharray: `${L1} ${L1}`, strokeDashoffset: L1 }, t + 0.12);
+      tl.to(d.tick1, { strokeDashoffset: 0, duration: 0.25, ease: 'power2.out' }, t + 0.12);
+      tl.set(d.tick1, { attr: { 'stroke-linecap': 'round' } }, t + 0.12 + 0.25);
+    } else {
+      tl.set(d.tick1, { strokeDasharray: 'none', strokeDashoffset: 0 }, t + 0.12);
+      tl.fromTo(d.tick1, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'power2.out', immediateRender: false }, t + 0.12);
+    }
+    if (L2 > 0) {
+      tl.set(d.tick2, { attr: { 'stroke-linecap': 'butt' } }, t + 0.18);
+      tl.set(d.tick2, { opacity: 1, strokeDasharray: `${L2} ${L2}`, strokeDashoffset: L2 }, t + 0.18);
+      tl.to(d.tick2, { strokeDashoffset: 0, duration: 0.25, ease: 'power2.out' }, t + 0.18);
+      tl.set(d.tick2, { attr: { 'stroke-linecap': 'round' } }, t + 0.18 + 0.25);
+    } else {
+      tl.set(d.tick2, { strokeDasharray: 'none', strokeDashoffset: 0 }, t + 0.18);
+      tl.fromTo(d.tick2, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'power2.out', immediateRender: false }, t + 0.18);
+    }
     // Label fade/slide
     tl.fromTo(
       d.label,
       { opacity: 0, y: 4 },
       { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', immediateRender: false },
-      t + 0.3
+      t + 0.32
     );
-    end = Math.max(end, t + 0.3 + 0.35);
+    end = Math.max(end, t + 0.32 + 0.35);
   });
   return end;
 }
