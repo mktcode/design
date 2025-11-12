@@ -42,17 +42,22 @@ export function initSchweinemobil() {
 	}
 
 	// Generate anchor points on the base image in normalized coordinates
-	function generateAnchors(n) {
-		const fixed = [
-			{ x: 0.18, y: 0.42 },
-			{ x: 0.62, y: 0.30 },
-			{ x: 0.78, y: 0.56 },
-			{ x: 0.48, y: 0.70 },
-			{ x: 0.32, y: 0.26 },
-			{ x: 0.12, y: 0.58 },
-			{ x: 0.66, y: 0.70 },
-			{ x: 0.86, y: 0.40 },
-		];
+		function generateAnchors(n) {
+			// Tuned to hit prominent features on the side view (door/ramp/body)
+			const fixed = [
+				// Top-left photo -> upper body/front area
+				{ x: 0.58, y: 0.34 },
+				// Right photo -> door area
+				{ x: 0.66, y: 0.33 },
+				// Bottom-left photo -> ramp hinge / lower body
+				{ x: 0.60, y: 0.60 },
+				// Fallback anchors follow
+				{ x: 0.44, y: 0.68 },
+				{ x: 0.36, y: 0.30 },
+				{ x: 0.20, y: 0.56 },
+				{ x: 0.72, y: 0.70 },
+				{ x: 0.82, y: 0.42 },
+			];
 		if (n <= fixed.length) return fixed.slice(0, n);
 		// For extras, place around a ring near the perimeter
 		const out = fixed.slice();
@@ -65,17 +70,18 @@ export function initSchweinemobil() {
 	}
 
 	// Generate on-stage absolute positions (as normalized stage coords)
-	function generatePositions(n) {
-		const spots = [
-			{ x: 0.14, y: 0.18 },
-			{ x: 0.86, y: 0.24 },
-			{ x: 0.14, y: 0.74 },
-			{ x: 0.86, y: 0.76 },
-			{ x: 0.50, y: 0.12 },
-			{ x: 0.50, y: 0.88 },
-			{ x: 0.26, y: 0.46 },
-			{ x: 0.74, y: 0.52 },
-		];
+		function generatePositions(n) {
+			// Arranged to match the reference composition: TL, R-mid, BL
+			const spots = [
+				{ x: 0.38, y: 0.2 }, // top-left
+				{ x: 0.76, y: 0.32 }, // right mid-high
+				{ x: 0.50, y: 0.76 }, // bottom-left
+				{ x: 0.84, y: 0.76 }, // extra bottom-right
+				{ x: 0.50, y: 0.14 },
+				{ x: 0.50, y: 0.86 },
+				{ x: 0.28, y: 0.46 },
+				{ x: 0.72, y: 0.52 },
+			];
 		if (n <= spots.length) return spots.slice(0, n);
 		const out = spots.slice();
 		const extras = n - spots.length;
@@ -109,19 +115,33 @@ export function initSchweinemobil() {
 		return toStagePoint(ir.left + ir.width / 2, ir.top + ir.height / 2);
 	}
 
-	function buildPath(start, end, bend = 0.18) {
-		// Quadratic curve with slight outward bend
-		const mx = (start.x + end.x) / 2;
-		const my = (start.y + end.y) / 2;
-		const dx = end.x - start.x;
-		const dy = end.y - start.y;
-		const len = Math.hypot(dx, dy) || 1;
-		const nx = -dy / len;
-		const ny = dx / len;
-		const cpx = mx + nx * len * bend;
-		const cpy = my + ny * len * bend;
-		return `M ${start.x.toFixed(1)} ${start.y.toFixed(1)} Q ${cpx.toFixed(1)} ${cpy.toFixed(1)} ${end.x.toFixed(1)} ${end.y.toFixed(1)}`;
-	}
+		function buildWavyPath(start, end, amplitudeFactor = 0.08) {
+			// Multi-segment quadratic with gentle wave
+			const dx = end.x - start.x;
+			const dy = end.y - start.y;
+			const len = Math.hypot(dx, dy) || 1;
+			const ux = dx / len;
+			const uy = dy / len;
+			const px = -uy; // unit perpendicular
+			const py = ux;
+
+			const amp = Math.min(60, len * amplitudeFactor);
+
+			// Segment points along the line
+			const p1 = { x: start.x + dx * 0.33, y: start.y + dy * 0.33 };
+			const p2 = { x: start.x + dx * 0.66, y: start.y + dy * 0.66 };
+
+			const c1 = { x: start.x + dx * 0.16 + px * amp, y: start.y + dy * 0.16 + py * amp };
+			const c2 = { x: start.x + dx * 0.50 - px * amp, y: start.y + dy * 0.50 - py * amp };
+			const c3 = { x: start.x + dx * 0.84 + px * amp * 0.7, y: start.y + dy * 0.84 + py * amp * 0.7 };
+
+			return [
+				`M ${start.x.toFixed(1)} ${start.y.toFixed(1)}`,
+				`Q ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}`,
+				`Q ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`,
+				`Q ${c3.x.toFixed(1)} ${c3.y.toFixed(1)} ${end.x.toFixed(1)} ${end.y.toFixed(1)}`,
+			].join(' ');
+		}
 
 	function pathLength(el) {
 		try { return el.getTotalLength(); } catch { return 0; }
@@ -149,11 +169,16 @@ export function initSchweinemobil() {
 			const pos = state.positions[i];
 			const anchor = state.anchors[i];
 
-			const imgEl = document.createElement('img');
+					const imgEl = document.createElement('img');
 			imgEl.src = url;
 			imgEl.alt = 'Detail';
 			imgEl.className = 'absolute rounded-xl border-8 border-white shadow-2xl shadow-black/30 object-cover opacity-0 will-change-transform';
-			imgEl.style.width = 'clamp(160px, 22vw, 420px)';
+					// Slight size variations for nicer composition
+					if (i === 1) {
+            imgEl.style.width = 'clamp(160px, 22vw, 440px)';
+					} else {
+						imgEl.style.width = 'clamp(200px, 28vw, 560px)';
+					}
 			imgEl.style.height = 'auto';
 			imgEl.style.left = `${pos.x * 100}%`;
 			imgEl.style.top = `${pos.y * 100}%`;
@@ -181,7 +206,11 @@ export function initSchweinemobil() {
 			g.appendChild(line);
 			svg.appendChild(g);
 
-			items.push({ imgEl, line, lineShadow, anchor });
+					// Start fully hidden to avoid pre-animation dots
+					line.style.opacity = '0';
+					lineShadow.style.opacity = '0';
+
+					items.push({ imgEl, line, lineShadow, anchor, index: i });
 		}
 		state.items = items;
 
@@ -208,20 +237,24 @@ export function initSchweinemobil() {
 		tl.to(baseImg, { opacity: 1, duration: 0.8 }, 0);
 
 		// Stagger details
-		const step = 0.5; // timeline units for each photo sequence
+			const step = 0.55; // timeline units for each photo sequence
 		state.items.forEach((it, i) => {
 			const t = 0.8 + i * step; // start after base fade
-			const L = pathLength(it.line);
-			const Ls = pathLength(it.lineShadow);
+				const L = pathLength(it.line);
+				const Ls = pathLength(it.lineShadow);
 			// Prepare dashes
-			gsap.set([it.line, it.lineShadow], { strokeDasharray: L, strokeDashoffset: L });
-			if (Ls && Ls !== L) gsap.set(it.lineShadow, { strokeDasharray: Ls, strokeDashoffset: Ls });
+				gsap.set([it.line, it.lineShadow], { strokeDasharray: L, strokeDashoffset: L + 2 });
+				if (Ls && Ls !== L) gsap.set(it.lineShadow, { strokeDasharray: Ls, strokeDashoffset: Ls + 2 });
 
 			tl.to(
 				it.imgEl,
 				{ opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
 				t
-			).fromTo(
+				).to(
+					[it.lineShadow, it.line],
+					{ opacity: 1, duration: 0.2, ease: 'none' },
+					t
+				).fromTo(
 				[it.lineShadow, it.line],
 				{ strokeDashoffset: (idx) => (idx === 0 ? Ls : L) },
 				{ strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' },
@@ -239,7 +272,7 @@ export function initSchweinemobil() {
 		for (const it of state.items) {
 			const start = imgCenterToStage(it.imgEl);
 			const end = anchorToStage(it.anchor);
-			const d = buildPath(start, end, 0.16);
+					const d = buildWavyPath(start, end, 0.09);
 			it.line.setAttribute('d', d);
 			it.lineShadow.setAttribute('d', d);
 		}

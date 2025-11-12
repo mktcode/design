@@ -11,6 +11,7 @@ export function initHeroParallax() {
       scrub: true,
     },
   })
+    .to('header h1', { y: -50, opacity: 0, ease: 'none' }, 0)
     .fromTo(
       '.hero-media',
       { scale: 1, filter: 'blur(0px)' },
