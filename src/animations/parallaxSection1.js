@@ -7,8 +7,8 @@ import { gsap, ScrollTrigger } from '../gsapSetup.js';
  * - Uses data-speed attribute (0..1) to scale travel distance
  * - Motion is scrubbed between section enter and leave
  */
-export function initParallaxImages() {
-  const container = document.querySelector('#features .feature-parallax');
+export function initParallaxSection1() {
+  const container = document.querySelector('#welcome .feature-parallax');
   if (!container) return;
 
   const items = gsap.utils.toArray(container.querySelectorAll('.parallax-item'));
@@ -27,7 +27,7 @@ export function initParallaxImages() {
         rotate: rotateTarget,
         ease: 'none',
         scrollTrigger: {
-          trigger: '#features',
+          trigger: '#welcome',
           start: 'top bottom',
           end: 'bottom top',
           scrub: true,
