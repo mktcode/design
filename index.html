@@ -8,20 +8,10 @@
   <link rel="icon" href="data:," />
 </head>
 
-<body class="bg-white text-gray-900 antialiased">
-  <header class="fixed inset-x-0 top-0 z-50 text-white/80 border-b border-white/50 h-[62px]">
-    <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-      <nav class="hidden md:flex gap-6 text-xl w-full">
-        <img src="./assets/img/logo-darum.webp" alt="Darum Logo" class="w-18 h-auto mr-12" />
-        <a href="#hero" class="hover:text-(--color-brand) transition-colors">Der Hof</a>
-        <a href="#products" class="hover:text-(--color-brand) transition-colors">Produkte</a>
-        <a href="#scheinemobil" class="hover:text-(--color-brand) transition-colors">Das Schweinemobil</a>
-        <a href="#cart" class="hover:text-(--color-brand) transition-colors ml-auto">
-          Warenkorb
-          <span id="cart-count" class="ml-2 text-inherit text-sm font-semibold px-2 py-1 rounded-full">0</span>
-        </a>
-      </nav>
-    </div>
+<body class="bg-white text-(--color-brand) antialiased">
+  <header class="fixed inset-x-0 top-0 z-50 text-white/80 flex flex-col items-center py-4">
+    <img src="./assets/img/logo-darum.webp" alt="Darum Logo" class="w-18 h-auto drop-shadow-2xl drop-shadow-white/50" />
+    <h1 class="mt-4 -rotate-6 italic text-3xl">Schlehbaumhof</h1>
   </header>
 
   <main id="app">
@@ -29,7 +19,7 @@
       <!-- Parallax background layer (fixed to viewport) restored -->
       <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
         <video class="hero-bg h-full w-full object-cover will-change-transform" aria-hidden="true" playsinline autoplay muted loop preload="auto" poster="./assets/img/schweinemobil-focus.jpg">
-          <source src="./assets/video/hero.webm" type="video/webm" />
+          <source src="./assets/video/hero1.webm" type="video/webm" />
         </video>
         <div class="hero-overlay absolute inset-0 bg-white opacity-0 will-change-opacity"></div>
       </div>
@@ -72,8 +62,8 @@
             <img src="./assets/img/produkte/produkt1.jpg" alt="Produkt 1" class="w-full h-full object-cover" />
           </div>
           <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
-            <h4 class="text-xl font-semibold">Bio Schweinekotelett</h4>
-            <p class="mt-2 text-neutral-600 text-sm">Zartes Kotelett vom Bunten Bentheimer Schwein – ideal für die Pfanne oder den Grill.</p>
+            <h4 class="text-2xl font-semibold">Bio Schweinekotelett</h4>
+            <p class="mt-2 text-neutral-600 text-sm line-clamp-2">Zartes Kotelett vom Bunten Bentheimer Schwein – ideal für die Pfanne oder den Grill.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">€ 9,90 / 500g</span>
               <button data-add-to-cart class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50">
@@ -88,8 +78,8 @@
             <img src="./assets/img/produkte/produkt2.jpg" alt="Produkt 2" class="w-full h-full object-cover" />
           </div>
           <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
-            <h4 class="text-xl font-semibold">Hausmacher Bratwurst</h4>
-            <p class="mt-2 text-neutral-600 text-sm">Traditionell gewürzt, knackig im Biss – perfekt für Pfanne oder Grillabende.</p>
+            <h4 class="text-2xl font-semibold">Hausmacher Bratwurst</h4>
+            <p class="mt-2 text-neutral-600 text-sm line-clamp-2">Traditionell gewürzt, knackig im Biss – perfekt für Pfanne oder Grillabende.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">€ 6,50 / 4 Stk.</span>
               <button data-add-to-cart class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50">
@@ -104,8 +94,8 @@
             <img src="./assets/img/produkte/produkt3.jpg" alt="Produkt 3" class="w-full h-full object-cover" />
           </div>
           <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
-            <h4 class="text-xl font-semibold">Schweinefilet</h4>
-            <p class="mt-2 text-neutral-600 text-sm">Besonders mager und fein – für Kurzgebratenes, Medaillons oder festliche Gerichte.</p>
+            <h4 class="text-2xl font-semibold">Schweinefilet</h4>
+            <p class="mt-2 text-neutral-600 text-sm line-clamp-2">Besonders mager und fein – für Kurzgebratenes, Medaillons oder festliche Gerichte.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">€ 14,90 / 400g</span>
               <button data-add-to-cart class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50">
@@ -120,8 +110,8 @@
             <img src="./assets/img/produkte/produkt4.jpg" alt="Produkt 4" class="w-full h-full object-cover" />
           </div>
           <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
-            <h4 class="text-xl font-semibold">Schweinebauch</h4>
-            <p class="mt-2 text-neutral-600 text-sm">Saftig mit feiner Kruste – eignet sich hervorragend zum Schmoren oder Grillen.</p>
+            <h4 class="text-2xl font-semibold">Schweinebauch</h4>
+            <p class="mt-2 text-neutral-600 text-sm line-clamp-2">Saftig mit feiner Kruste – eignet sich hervorragend zum Schmoren oder Grillen.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">€ 8,90 / 600g</span>
               <button data-add-to-cart class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50">
@@ -136,8 +126,8 @@
             <img src="./assets/img/produkte/produkt5.jpg" alt="Produkt 5" class="w-full h-full object-cover" />
           </div>
           <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
-            <h4 class="text-xl font-semibold">Schinkenaufschnitt</h4>
-            <p class="mt-2 text-neutral-600 text-sm">Aromatisch gereift – fein geschnitten für Brotzeit, Antipasti oder Snack.</p>
+            <h4 class="text-2xl font-semibold">Schinkenaufschnitt</h4>
+            <p class="mt-2 text-neutral-600 text-sm line-clamp-2">Aromatisch gereift – fein geschnitten für Brotzeit, Antipasti oder Snack.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">€ 4,90 / 120g</span>
               <button data-add-to-cart class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50">
@@ -152,8 +142,8 @@
             <img src="./assets/img/produkte/produkt6.jpg" alt="Produkt 6" class="w-full h-full object-cover" />
           </div>
           <div class="p-5 rounded-2xl -mt-4 z-20 relative bg-white">
-            <h4 class="text-xl font-semibold">Leberwurst im Glas</h4>
-            <p class="mt-2 text-neutral-600 text-sm">Hausgemacht nach Familienrezept – streichzart und würzig.</p>
+            <h4 class="text-2xl font-semibold">Leberwurst im Glas</h4>
+            <p class="mt-2 text-neutral-600 text-sm line-clamp-2">Hausgemacht nach Familienrezept – streichzart und würzig.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">€ 3,90 / 200g</span>
               <button data-add-to-cart class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50">
@@ -201,7 +191,7 @@
     </section>
 
     <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
-    <section id="sequence" class="relative -mt-96 min-h-[500vh]">
+    <section id="sequence" class="relative -mt-96 min-h-[300vh]">
       <div class="sticky top-0 h-screen">
         <canvas id="bg-sequence" class="w-full h-full"></canvas>
       </div>
