@@ -120,7 +120,7 @@ export function initScrollSequence() {
         const ramp = (x, a, b) => Math.max(0, Math.min(1, (x - a) / (b - a)));
         const fadeIn = ramp(p, 0.0, 0.35);
         const fadeOut = ramp(1 - p, 0.0, 0.35);
-        const opacity = Math.min(Math.min(fadeIn, fadeOut), 0.5);
+        const opacity = Math.min(fadeIn, fadeOut);
         canvas.style.opacity = Math.min(opacity, 0.5);
         overlay.style.opacity = Math.min(opacity, 0.8);
 
