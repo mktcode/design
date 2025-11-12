@@ -78,11 +78,11 @@ export function layoutDimensions(state, { baseImg, stage }) {
 }
 
 export function primeDimensionStates(state) {
-  // Compute dash lengths and hide lines via dashoffset; set opacity to 1 now that paths have geometry
+  // Keep opacity 0 until animation actually starts, avoid tiny visible caps.
   state.dimensions.forEach((d) => {
     const L = safeLength(d.path);
-    gsap.set(d.path, { opacity: 1, strokeDasharray: L, strokeDashoffset: L + 10 });
-    gsap.set([d.tick1, d.tick2], { opacity: 1, strokeDasharray: 20, strokeDashoffset: 20 });
+    gsap.set(d.path, { opacity: 0, strokeDasharray: L, strokeDashoffset: L });
+    gsap.set([d.tick1, d.tick2], { opacity: 0, strokeDasharray: 1, strokeDashoffset: 1 });
     gsap.set(d.label, { opacity: 0, y: 4 });
   });
   state._dimPrimed = true;
@@ -93,11 +93,29 @@ export function animateDimensions(tl, state, { start = 0.2 }) {
   let end = start;
   state.dimensions.forEach((d, i) => {
     const t = start + i * step;
-  const L = safeLength(d.path);
-  tl.to(d.path, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' }, t);
-    tl.to([d.tick1, d.tick2], { strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' }, t + 0.1);
-    tl.to(d.label, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, t + 0.25);
-    end = Math.max(end, t + 0.25 + 0.35);
+    const L = safeLength(d.path);
+    // Path draw with opacity fade
+    tl.fromTo(
+      d.path,
+      { opacity: 0, strokeDasharray: L, strokeDashoffset: L },
+      { opacity: 1, strokeDashoffset: 0, duration: 0.6, ease: 'power2.out', immediateRender: false },
+      t
+    );
+    // Ticks appear (no dash draw needed, just fade) after slight delay
+    tl.fromTo(
+      [d.tick1, d.tick2],
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3, ease: 'power2.out', immediateRender: false },
+      t + 0.15
+    );
+    // Label fade/slide
+    tl.fromTo(
+      d.label,
+      { opacity: 0, y: 4 },
+      { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', immediateRender: false },
+      t + 0.3
+    );
+    end = Math.max(end, t + 0.3 + 0.35);
   });
   return end;
 }
