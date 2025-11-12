@@ -40,16 +40,15 @@ export function createDimensions(state, { baseImg, stage, svg }) {
 
     g.appendChild(path); g.appendChild(tick1); g.appendChild(tick2); g.appendChild(label);
     svg.appendChild(g);
+    // Start fully invisible until we can compute lengths after base image is laid out
+    path.style.opacity = '0';
+    tick1.style.opacity = '0';
+    tick2.style.opacity = '0';
+    label.style.opacity = '0';
     return { spec, path, tick1, tick2, label };
   });
   layoutDimensions(state, { baseImg, stage });
-  // Prime hidden states
-  state.dimensions.forEach((d) => {
-    const L = safeLength(d.path);
-    gsap.set(d.path, { strokeDasharray: L, strokeDashoffset: L + 10 });
-    gsap.set([d.tick1, d.tick2], { strokeDasharray: 20, strokeDashoffset: 20 });
-    gsap.set(d.label, { opacity: 0, y: 4 });
-  });
+  if (baseImg.complete) primeDimensionStates(state);
 }
 
 export function layoutDimensions(state, { baseImg, stage }) {
@@ -78,13 +77,24 @@ export function layoutDimensions(state, { baseImg, stage }) {
   }
 }
 
+export function primeDimensionStates(state) {
+  // Compute dash lengths and hide lines via dashoffset; set opacity to 1 now that paths have geometry
+  state.dimensions.forEach((d) => {
+    const L = safeLength(d.path);
+    gsap.set(d.path, { opacity: 1, strokeDasharray: L, strokeDashoffset: L + 10 });
+    gsap.set([d.tick1, d.tick2], { opacity: 1, strokeDasharray: 20, strokeDashoffset: 20 });
+    gsap.set(d.label, { opacity: 0, y: 4 });
+  });
+  state._dimPrimed = true;
+}
+
 export function animateDimensions(tl, state, { start = 0.2 }) {
   const step = 0.18;
   let end = start;
   state.dimensions.forEach((d, i) => {
     const t = start + i * step;
-    const L = safeLength(d.path);
-    tl.to(d.path, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' }, t);
+  const L = safeLength(d.path);
+  tl.to(d.path, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' }, t);
     tl.to([d.tick1, d.tick2], { strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' }, t + 0.1);
     tl.to(d.label, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, t + 0.25);
     end = Math.max(end, t + 0.25 + 0.35);

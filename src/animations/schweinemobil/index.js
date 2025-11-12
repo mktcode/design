@@ -1,5 +1,5 @@
 import { gsap, ScrollTrigger } from '../../gsapSetup.js';
-import { createDimensions, layoutDimensions, animateDimensions } from './dimensions.js';
+import { createDimensions, layoutDimensions, animateDimensions, primeDimensionStates } from './dimensions.js';
 import { createPhotos, layoutPhotoLines, layoutCaptions, animatePhotos } from './photos.js';
 
 export function initSchweinemobil() {
@@ -34,6 +34,7 @@ export function initSchweinemobil() {
   function relayoutAll() {
     setSvgViewBox();
     layoutDimensions(state, { baseImg, stage });
+    if (!state._dimPrimed && baseImg.complete) primeDimensionStates(state);
     layoutPhotoLines(state, { stage, baseImg });
     layoutCaptions(state, { stage });
   }
@@ -73,5 +74,5 @@ export function initSchweinemobil() {
   window.addEventListener('resize', relayoutAll, { passive: true });
 
   // Wait for base image for accurate first layout
-  if (!baseImg.complete) baseImg.addEventListener('load', () => relayoutAll(), { once: true });
+  if (!baseImg.complete) baseImg.addEventListener('load', () => { relayoutAll(); }, { once: true });
 }
