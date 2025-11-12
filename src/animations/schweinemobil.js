@@ -186,6 +186,11 @@ export function initSchweinemobil() {
 			imgEl.decoding = 'async';
 			photosHost.appendChild(imgEl);
 
+			// Reposition captions when the image finishes loading (ensures correct rect)
+			if (!imgEl.complete) {
+				imgEl.addEventListener('load', () => layoutCaptions(), { once: true });
+			}
+
 			// Create SVG group: shadowed line (white) + colored line
 			const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 			const lineShadow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -243,7 +248,8 @@ export function initSchweinemobil() {
 				scrub: true,
 				pin: true,
 				anticipatePin: 1,
-				onRefresh: layoutPaths,
+				onRefresh: () => { layoutPaths(); layoutCaptions(); },
+				onUpdate: () => { layoutCaptions(); },
 			},
 			defaults: { ease: 'power2.out' },
 		});
@@ -257,9 +263,9 @@ export function initSchweinemobil() {
 			const t = 0.8 + i * step; // start after base fade
 				const L = pathLength(it.line);
 				const Ls = pathLength(it.lineShadow);
-			// Prepare dashes
-				gsap.set([it.line, it.lineShadow], { strokeDasharray: L, strokeDashoffset: L + 2 });
-				if (Ls && Ls !== L) gsap.set(it.lineShadow, { strokeDasharray: Ls, strokeDashoffset: Ls + 2 });
+			// Prepare dashes (hide completely before draw)
+				gsap.set([it.line, it.lineShadow], { strokeDasharray: L, strokeDashoffset: L + 6 });
+				if (Ls && Ls !== L) gsap.set(it.lineShadow, { strokeDasharray: Ls, strokeDashoffset: Ls + 6 });
 
 			// Subtle directional enter for the image
 			const pos = state.positions[i];
@@ -275,16 +281,12 @@ export function initSchweinemobil() {
 				{ opacity: 0, x: enterOffset.x, y: enterOffset.y },
 				{ opacity: 1, x: 0, y: 0, duration: 0.6, ease: 'power3.out' },
 				t
-				).to(
-					[it.lineShadow, it.line],
-					{ opacity: 1, duration: 0.2, ease: 'none' },
-					t
 				).fromTo(
-				[it.lineShadow, it.line],
-				{ strokeDashoffset: (idx) => (idx === 0 ? Ls : L) },
-				{ strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' },
-				t + 0.1
-			);
+					[it.lineShadow, it.line],
+					{ opacity: 0, strokeDashoffset: (idx) => (idx === 0 ? Ls + 6 : L + 6) },
+					{ opacity: 1, strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' },
+					t + 0.1
+				);
 
 			// Caption comes a hair later
 			if (it.captionEl) {
