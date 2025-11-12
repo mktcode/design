@@ -173,12 +173,7 @@ export function initSchweinemobil() {
 			imgEl.src = url;
 			imgEl.alt = 'Detail';
 			imgEl.className = 'absolute rounded-xl border-8 border-white shadow-2xl shadow-black/30 object-cover opacity-0 will-change-transform';
-					// Slight size variations for nicer composition
-					if (i === 1) {
-						imgEl.style.width = 'clamp(200px, 28vw, 560px)';
-					} else {
-						imgEl.style.width = 'clamp(160px, 22vw, 440px)';
-					}
+      imgEl.style.width = 'clamp(160px, 22vw, 440px)';
 			imgEl.style.height = 'auto';
 			imgEl.style.left = `${pos.x * 100}%`;
 			imgEl.style.top = `${pos.y * 100}%`;
