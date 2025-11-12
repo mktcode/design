@@ -28,7 +28,7 @@ export function initSchweinemobil() {
 	if (base) baseImg.src = base;
 
 	const state = {
-		items: [], // {imgEl, pathEl, start, end}
+		items: [], // {imgEl, line, lineShadow, anchor, index, captionEl?, placement?}
 		anchors: [],
 		positions: [],
 	};
@@ -175,9 +175,9 @@ export function initSchweinemobil() {
 			imgEl.className = 'absolute rounded-xl border-8 border-white shadow-2xl shadow-black/30 object-cover opacity-0 will-change-transform';
 					// Slight size variations for nicer composition
 					if (i === 1) {
-            imgEl.style.width = 'clamp(160px, 22vw, 440px)';
-					} else {
 						imgEl.style.width = 'clamp(200px, 28vw, 560px)';
+					} else {
+						imgEl.style.width = 'clamp(160px, 22vw, 440px)';
 					}
 			imgEl.style.height = 'auto';
 			imgEl.style.left = `${pos.x * 100}%`;
@@ -210,12 +210,27 @@ export function initSchweinemobil() {
 					line.style.opacity = '0';
 					lineShadow.style.opacity = '0';
 
-					items.push({ imgEl, line, lineShadow, anchor, index: i });
+					// Captions: first -> right, second -> below, last -> left (plain text, headline + sentence)
+					let captionEl = null; let placement = null;
+					let headline = ''; let sentence = '';
+					if (i === 0) { placement = 'right'; headline = 'Transport & Aufbau'; sentence = 'Flexibel direkt auf dem Feld.'; }
+					else if (i === 1) { placement = 'below'; headline = 'Einstieg & Rampe'; sentence = 'Komfortabel und sicher.'; }
+					else if (i === n - 1) { placement = 'left'; headline = 'Serviceklappe & Technik'; sentence = 'Einfacher Zugang für Wartung.'; }
+
+					if (placement) {
+						captionEl = document.createElement('div');
+						captionEl.className = 'smobil-caption absolute max-w-[30ch] text-(--color-brand) text-xs sm:text-sm md:text-base opacity-0 leading-snug font-medium will-change-transform';
+						captionEl.innerHTML = `<strong class="block mb-0.5 font-semibold text-[0.85rem] sm:text-sm md:text-base">${headline}</strong><span class="block font-normal">${sentence}</span>`;
+						photosHost.appendChild(captionEl);
+					}
+
+					items.push({ imgEl, line, lineShadow, anchor, index: i, captionEl, placement });
 		}
 		state.items = items;
 
-		// Initial path layout
+		// Initial geometry layout
 		layoutPaths();
+		layoutCaptions();
 
 		// Build timeline
 		const totalSteps = Math.max(1, state.items.length);
@@ -246,9 +261,19 @@ export function initSchweinemobil() {
 				gsap.set([it.line, it.lineShadow], { strokeDasharray: L, strokeDashoffset: L + 2 });
 				if (Ls && Ls !== L) gsap.set(it.lineShadow, { strokeDasharray: Ls, strokeDashoffset: Ls + 2 });
 
-			tl.to(
+			// Subtle directional enter for the image
+			const pos = state.positions[i];
+			const enterOffset = (() => {
+				// Prefer horizontal slide for left/right; vertical for low items
+				if (pos.y > 0.65) return { x: 0, y: 26 };
+				if (pos.x < 0.5) return { x: -24, y: 0 };
+				return { x: 24, y: 0 };
+			})();
+
+			tl.fromTo(
 				it.imgEl,
-				{ opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+				{ opacity: 0, x: enterOffset.x, y: enterOffset.y },
+				{ opacity: 1, x: 0, y: 0, duration: 0.6, ease: 'power3.out' },
 				t
 				).to(
 					[it.lineShadow, it.line],
@@ -260,6 +285,19 @@ export function initSchweinemobil() {
 				{ strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' },
 				t + 0.1
 			);
+
+			// Caption comes a hair later
+			if (it.captionEl) {
+				const capEnter = it.placement === 'right' ? { x: 8, y: 0 }
+					: it.placement === 'left' ? { x: -8, y: 0 }
+					: { x: 0, y: 10 };
+				tl.fromTo(
+					it.captionEl,
+					{ opacity: 0, x: capEnter.x, y: capEnter.y },
+					{ opacity: 1, x: 0, y: 0, duration: 0.4, ease: 'power2.out' },
+					t + 0.14
+				);
+			}
 		});
 
 		// Keep references for potential external debugging
@@ -278,12 +316,38 @@ export function initSchweinemobil() {
 		}
 	}
 
-	// Keep geometry correct on resize
-	const ro = new ResizeObserver(() => layoutPaths());
-	ro.observe(stage);
-	window.addEventListener('resize', layoutPaths, { passive: true });
+	function layoutCaptions() {
+		const stageRect = stage.getBoundingClientRect();
+		for (const it of state.items) {
+			if (!it.captionEl) continue;
+			const imgRect = it.imgEl.getBoundingClientRect();
+			if (it.placement === 'right') {
+				// For right photo, user wants the text below the image
+				it.captionEl.style.left = `${(imgRect.left + imgRect.width / 2) - stageRect.left}px`;
+				it.captionEl.style.top = `${imgRect.bottom - stageRect.top + 12}px`;
+				it.captionEl.style.transform = 'translate(-50%, 0)';
+			} else if (it.placement === 'left') {
+				// For bottom image, user wants the text to the left
+				it.captionEl.style.left = `${imgRect.left - stageRect.left - 16}px`;
+				it.captionEl.style.top = `${(imgRect.top + imgRect.height / 2) - stageRect.top}px`;
+				it.captionEl.style.transform = 'translate(-100%, -50%)';
+			} else { // below
+				it.captionEl.style.left = `${(imgRect.left + imgRect.width / 2) - stageRect.left}px`;
+				it.captionEl.style.top = `${imgRect.bottom - stageRect.top + 12}px`;
+				it.captionEl.style.transform = 'translate(-50%, 0)';
+			}
+		}
+	}
 
-	setup().catch((e) => console.error('Schweinemobil setup failed', e));
+	// Keep geometry correct on resize
+	const ro = new ResizeObserver(() => { layoutPaths(); layoutCaptions(); });
+	ro.observe(stage);
+	window.addEventListener('resize', () => { layoutPaths(); layoutCaptions(); }, { passive: true });
+
+	setup().then(() => {
+		// Position captions again in case fonts load late
+		setTimeout(layoutCaptions, 50);
+	}).catch((e) => console.error('Schweinemobil setup failed', e));
 }
 
 	// Note: initialization is handled from main.js to avoid double inits
