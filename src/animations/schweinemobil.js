@@ -31,6 +31,7 @@ export function initSchweinemobil() {
 		items: [], // {imgEl, line, lineShadow, anchor, index, captionEl?, placement?}
 		anchors: [],
 		positions: [],
+		dimensions: [], // dimension visuals for red measurement lines
 	};
 
 	function waitImage(img) {
@@ -162,6 +163,9 @@ export function initSchweinemobil() {
 		state.anchors = generateAnchors(n);
 		state.positions = generatePositions(n);
 
+		// Create dimension graphics first so they animate before photos
+		createDimensions();
+
 		// Create elements for each detail photo
 		const items = [];
 		for (let i = 0; i < n; i++) {
@@ -230,6 +234,7 @@ export function initSchweinemobil() {
 
 		// Initial geometry layout
 		layoutPaths();
+		layoutDimensions();
 		layoutCaptions();
 
 		// Build timeline
@@ -251,6 +256,49 @@ export function initSchweinemobil() {
 
 		// Base image slow fade-in
 		tl.to(baseImg, { opacity: 1, duration: 0.8 }, 0);
+
+		// Animate dimensions (lines + ticks + numbers) before photos
+		const dimStep = 0.18;
+		state.dimensions.forEach((d, i) => {
+			const t = 0.25 + i * dimStep;
+			const L = pathLength(d.path);
+			// Prime dashes
+			gsap.set(d.path, { strokeDasharray: L, strokeDashoffset: L + 4, opacity: 1 });
+			gsap.set([d.tick1, d.tick2], { strokeDasharray: 20, strokeDashoffset: 20, opacity: 1 });
+			// Draw main line
+			tl.fromTo(
+				d.path,
+				{ strokeDashoffset: L + 4 },
+				{ strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' },
+				t
+			);
+			// Pop in ticks
+			tl.fromTo(
+				[d.tick1, d.tick2],
+				{ strokeDashoffset: 20 },
+				{ strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' },
+				t + 0.1
+			);
+			// Animate number (count up) and fade/slide text
+			tl.fromTo(
+				d.label,
+				{ opacity: 0, y: 4 },
+				{ opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' },
+				t + 0.25
+			);
+			const target = d.value;
+			const obj = { v: 0 };
+			tl.to(obj, {
+				duration: 0.6,
+				v: target,
+				snap: { v: 1 },
+				ease: 'power1.out',
+				onUpdate: () => {
+					const val = Math.round(obj.v);
+					d.label.textContent = `${val} cm`;
+				},
+			}, t + 0.25);
+		});
 
 		// Stagger details
 			const step = 0.55; // timeline units for each photo sequence
@@ -313,6 +361,89 @@ export function initSchweinemobil() {
 		}
 	}
 
+	function createDimensions() {
+		// Specs in normalized base-image coordinates
+		// Horizontal width under front view
+		const specs = [
+			{ a: { x: 0.185, y: 0.83 }, b: { x: 0.335, y: 0.83 }, value: 292, orient: 'h' },
+			// Vertical height near side view mid-left
+			{ a: { x: 0.455, y: 0.40 }, b: { x: 0.455, y: 0.82 }, value: 250, orient: 'v' },
+			// Vertical height near right end
+			{ a: { x: 0.915, y: 0.42 }, b: { x: 0.915, y: 0.84 }, value: 250, orient: 'v' },
+		];
+		const RED = '#e11d48';
+		const dims = [];
+		for (const s of specs) {
+			const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+			const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			path.setAttribute('fill', 'none');
+			path.setAttribute('stroke', RED);
+			path.setAttribute('stroke-width', '2');
+			path.setAttribute('stroke-linecap', 'round');
+			path.setAttribute('stroke-linejoin', 'round');
+			const tick1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			const tick2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			[tick1, tick2].forEach(t => {
+				t.setAttribute('fill', 'none');
+				t.setAttribute('stroke', RED);
+				t.setAttribute('stroke-width', '2');
+				t.setAttribute('stroke-linecap', 'round');
+			});
+			const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+			label.setAttribute('fill', RED);
+			label.setAttribute('font-size', '14');
+			label.setAttribute('font-family', 'Montserrat, Arial, sans-serif');
+			label.setAttribute('text-anchor', 'middle');
+			label.setAttribute('dominant-baseline', 'middle');
+			label.style.opacity = '0';
+
+			g.appendChild(path);
+			g.appendChild(tick1);
+			g.appendChild(tick2);
+			g.appendChild(label);
+			svg.appendChild(g);
+
+			dims.push({ spec: s, path, tick1, tick2, label, value: s.value });
+		}
+		state.dimensions = dims;
+	}
+
+	function layoutDimensions() {
+		const baseR = baseImg.getBoundingClientRect();
+		const stageR = stage.getBoundingClientRect();
+		const toStage = (p) => ({
+			x: stageR.left + baseR.width * p.x + (baseR.left - stageR.left),
+			y: stageR.top + baseR.height * p.y + (baseR.top - stageR.top),
+		});
+		for (const d of state.dimensions) {
+			const { a, b, orient } = d.spec;
+			const A = toStage(a); const B = toStage(b);
+			const start = toStage(a); const end = toStage(b);
+			const pathD = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
+			d.path.setAttribute('d', pathD);
+			// Ticks: 10px ticks perpendicular to line
+			const dx = end.x - start.x; const dy = end.y - start.y; const len = Math.hypot(dx, dy) || 1;
+			const nx = -dy / len, ny = dx / len; const tick = 10;
+			const t1a = { x: start.x + nx * tick, y: start.y + ny * tick };
+			const t1b = { x: start.x - nx * tick, y: start.y - ny * tick };
+			const t2a = { x: end.x + nx * tick, y: end.y + ny * tick };
+			const t2b = { x: end.x - nx * tick, y: end.y - ny * tick };
+			d.tick1.setAttribute('d', `M ${t1a.x} ${t1a.y} L ${t1b.x} ${t1b.y}`);
+			d.tick2.setAttribute('d', `M ${t2a.x} ${t2a.y} L ${t2b.x} ${t2b.y}`);
+			// Label position at midpoint plus slight perpendicular offset
+			const mx = (start.x + end.x) / 2; const my = (start.y + end.y) / 2;
+			const off = 14;
+			d.label.setAttribute('x', (mx + nx * off).toString());
+			d.label.setAttribute('y', (my + ny * off).toString());
+			if (orient === 'v') {
+				// Rotate text to vertical reading
+				d.label.setAttribute('transform', `rotate(-90 ${mx + nx * off} ${my + ny * off})`);
+			} else {
+				d.label.removeAttribute('transform');
+			}
+		}
+	}
+
 	function layoutCaptions() {
 		const stageRect = stage.getBoundingClientRect();
 		for (const it of state.items) {
@@ -337,13 +468,13 @@ export function initSchweinemobil() {
 	}
 
 	// Keep geometry correct on resize
-	const ro = new ResizeObserver(() => { layoutPaths(); layoutCaptions(); });
+	const ro = new ResizeObserver(() => { layoutPaths(); layoutDimensions(); layoutCaptions(); });
 	ro.observe(stage);
-	window.addEventListener('resize', () => { layoutPaths(); layoutCaptions(); }, { passive: true });
+	window.addEventListener('resize', () => { layoutPaths(); layoutDimensions(); layoutCaptions(); }, { passive: true });
 
 	setup().then(() => {
 		// Position captions again in case fonts load late
-		setTimeout(layoutCaptions, 50);
+		setTimeout(() => { layoutDimensions(); layoutCaptions(); }, 50);
 	}).catch((e) => console.error('Schweinemobil setup failed', e));
 }
 
