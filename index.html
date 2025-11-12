@@ -9,12 +9,13 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
-  <header class="fixed inset-x-0 top-0 z-50 text-white">
+  <header class="fixed inset-x-0 top-0 z-50 text-white/80 border-b border-white/50 h-[62px]">
     <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
       <nav class="hidden md:flex gap-6 text-xl w-full">
-        <a href="#hero" class="hover:text-(--color-brand) transition-colors">Home</a>
-        <a href="#features" class="hover:text-(--color-brand) transition-colors">Features</a>
-        <a href="#products" class="hover:text-(--color-brand) transition-colors">Products</a>
+        <img src="./assets/img/logo-darum.webp" alt="Darum Logo" class="w-18 h-auto mr-12" />
+        <a href="#hero" class="hover:text-(--color-brand) transition-colors">Der Hof</a>
+        <a href="#products" class="hover:text-(--color-brand) transition-colors">Produkte</a>
+        <a href="#scheinemobil" class="hover:text-(--color-brand) transition-colors">Das Schweinemobil</a>
         <a href="#cart" class="hover:text-(--color-brand) transition-colors ml-auto">
           Warenkorb
           <span id="cart-count" class="ml-2 text-inherit text-sm font-semibold px-2 py-1 rounded-full">0</span>
@@ -31,13 +32,6 @@
           <source src="./assets/video/hero.webm" type="video/webm" />
         </video>
         <div class="hero-overlay absolute inset-0 bg-white opacity-0 will-change-opacity"></div>
-      </div>
-      <div class="text-center drop-shadow-[0_50px_50px_rgb(0_0_0/0.15)] drop-shadow-white/40">
-        <img class="fade-in w-48 mx-auto" src="./assets/img/logo-darum.webp" alt="Darum" />
-        <h2 class="mt-8 text-5xl md:text-7xl text-white font-bold tracking-wide fade-in text-shadow-lg">Schlehbaumhof</h2>
-        <p class="mt-6 max-w-2xl mx-auto text-4xl md:text-5xl text-white/90 fade-in text-shadow-md">
-          Regionale Bioqualität – In Verantwortung für Tier & Land.
-        </p>
       </div>
     </section>
 
@@ -172,7 +166,7 @@
 
       <div class="mt-12 text-center fade-in">
         <button id="load-more-products" class="inline-flex items-center gap-2 bg-(--color-brand) text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-(--color-brand)/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--color-brand)/50 transition-colors">
-          Mehr Produkte
+          Zum Shop
         </button>
       </div>
     </section>
