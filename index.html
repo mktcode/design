@@ -14,7 +14,7 @@
     <h1 class="mt-5 md:mt-10 -rotate-6 italic text-4xl md:text-7xl font-bold">Schlehbaumhof</h1>
   </header>
 
-  <main id="app">
+  <main id="app" class="overflow-hidden">
     <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
       <!-- Parallax background layer (fixed to viewport) restored -->
       <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
@@ -25,8 +25,8 @@
       </div>
     </section>
 
-    <section id="welcome" class="px-6">
-      <div class="mx-auto max-w-6xl grid grid-cols-2 gap-24">
+    <section id="welcome" class="px-6 max-h-[170vh]">
+      <div class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-24">
         <div class="fade-in text-xl leading-relaxed">
           <h3 class="text-7xl font-bold">Herzlich Willkommen!</h3>
           <p class="mt-12 fade-in">
@@ -54,15 +54,15 @@
       </div>
     </section>
 
-    <section class="pb-24">
-      <div class="mx-auto max-w-6xl flex gap-24 mb-48 justify-center items-center">
-        <img src="./assets/img/bioland-logo.png" alt="Bioland Logo" class="h-24 object-contain fade-in" />
-        <img src="./assets/img/eu-organic-logo.png" alt="EU Organic Logo" class="h-24 object-contain fade-in rounded-lg" />
-        <img src="./assets/img/innovationspreis-tierwohl.webp" alt="Innovationspreis Tierwohl Logo" class="h-24 object-contain fade-in" />
+    <section class="pb-6 md:pb-24">
+      <div class="mx-auto w-full max-w-6xl flex gap-6 md:gap-24 mb-48 justify-center items-center">
+        <img src="./assets/img/bioland-logo.png" alt="Bioland Logo" class="h-10 md:h-24 object-contain fade-in" />
+        <img src="./assets/img/eu-organic-logo.png" alt="EU Organic Logo" class="h-10 md:h-24 object-contain fade-in rounded-lg" />
+        <img src="./assets/img/innovationspreis-tierwohl.webp" alt="Innovationspreis Tierwohl Logo" class="h-10 md:h-24 object-contain fade-in" />
       </div>
     </section>
 
-    <section id="products" class="px-6 py-48">
+    <section id="products" class="px-6 py-12 md:py-48">
       <div class="mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <h2 class="col-span-full text-7xl font-bold mb-12 text-center fade-in">Unsere Produkte</h2>
         <article class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl shadow-black/5 transition-shadow bg-white fade-in">
