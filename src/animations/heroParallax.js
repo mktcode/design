@@ -76,11 +76,8 @@ function initHeroVideoCrossfade() {
   mediaWrapper.appendChild(baseVideo);
 
   // Define sources to rotate
-  const sources = [
-    './assets/video/hero1.webm',
-    './assets/video/hero2.webm',
-    './assets/video/hero3.webm',
-  ];
+  const videoFilePaths = import.meta.glob('/assets/video/*.webm', { eager: true });
+  const sources = Object.values(videoFilePaths).map((mod) => mod.default);
 
   // If base video has no src attribute but <source>, keep as-is; otherwise ensure it's first source
   const baseSrc = baseVideo.currentSrc || baseVideo.getAttribute('src') || (baseVideo.querySelector('source')?.getAttribute('src') ?? '');
