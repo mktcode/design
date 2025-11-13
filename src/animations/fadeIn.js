@@ -13,7 +13,6 @@ export function initFadeIn() {
           y: 0,
           duration: 1.2,
           ease: 'power3.out',
-          delay: i * 0.12,
           scrollTrigger: {
             trigger: el,
             start: 'top bottom',
