@@ -108,7 +108,7 @@ export function initScrollSequence() {
     ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: 'bottom center',
+      end: 'bottom bottom',
       scrub: 0.6,
       onUpdate: (self) => {
         const p = self.progress || 0;

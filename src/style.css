@@ -51,26 +51,12 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity .4s ease;
 }
 
-/* Slides overlay container */
-#sequence .sequence-slides {
-  display: flex;
-  align-items: start;
-  justify-content: center;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 2rem 0;
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 #sequence .sequence-slides .text-block {
   color: white;
   max-width: 54ch;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity .4s ease, transform .4s ease;
-  padding: 2.5rem;
 }
 
 #sequence .sequence-slides .text-block.is-visible {

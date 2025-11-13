@@ -12,8 +12,7 @@ export function initSequenceSlides() {
     scrollTrigger: {
       trigger: section,
       start: 'top top',
-      // End earlier relative to extended section height so frames keep playing after texts vanish
-      end: '+=150%',
+      end: 'bottom bottom',
       scrub: true,
     },
     defaults: { ease: 'power2.out' },
@@ -22,7 +21,7 @@ export function initSequenceSlides() {
   // Make slides appear later and occupy a compressed window inside the timeline
   // Reserve first 30% for only sequence frames (no text), then show each block within next 40%, then hide again.
   const visibleWindowStart = 0.30;
-  const visibleWindowEnd = 0.70; // after which all texts are hidden while frames continue
+  const visibleWindowEnd = 1; // after which all texts are hidden while frames continue
   const seg = (visibleWindowEnd - visibleWindowStart) / blocks.length;
   for (let i = 0; i < blocks.length; i++) {
     const el = blocks[i];

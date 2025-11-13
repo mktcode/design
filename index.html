@@ -14,7 +14,7 @@
     <h1 class="mt-5 md:mt-10 -rotate-6 italic text-4xl md:text-7xl font-bold">Schlehbaumhof</h1>
   </header>
 
-  <main id="app" class="overflow-hidden">
+  <main id="app">
     <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
       <!-- Parallax background layer (fixed to viewport) restored -->
       <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
@@ -25,7 +25,7 @@
       </div>
     </section>
 
-    <section id="welcome" class="px-6 max-h-[170vh]">
+    <section id="welcome" class="px-6 max-h-[170vh] overflow-hidden">
       <div class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-24">
         <div class="fade-in text-xl leading-relaxed">
           <h3 class="text-7xl font-bold">Herzlich Willkommen!</h3>
@@ -170,26 +170,26 @@
     </section>
 
     <!-- Scroll-driven frame sequence SECTION (canvas only active here) -->
-    <section id="sequence" class="relative -mt-96 min-h-[300vh]">
+    <section id="sequence" class="relative min-h-[500vh]">
       <div class="sticky top-0 h-screen">
         <div id="bg-sequence-overlay" class="absolute inset-0 bg-(--color-brand) opacity-0 will-change-opacity z-10"></div>
         <canvas id="bg-sequence" class="w-full h-full brightness-50"></canvas>
       </div>
-      <div class="sequence-slides sticky top-24 container mx-auto text-2xl">
-        <div class="text-block">
-          <h3 class="text-5xl font-semibold mb-3">Bunte Bentheimer Schweine</h3>
+      <div class="sequence-slides sticky top-36 container mx-auto text-lg md:text-2xl">
+        <div class="text-block px-6">
+          <h3 class="text-3xl md:text-5xl font-semibold mb-3">Bunte Bentheimer Schweine</h3>
           <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
             Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis
             natoque penatibus et magnis dis parturient montes.</p>
         </div>
-        <div class="text-block">
-          <h3 class="text-5xl font-semibold mb-3">Consectetur adipiscing elit</h3>
+        <div class="text-block px-6">
+          <h3 class="text-3xl md:text-5xl font-semibold mb-3">Consectetur adipiscing elit</h3>
           <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur
             blandit tempus porttitor. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet
             fermentum.</p>
         </div>
-        <div class="text-block">
-          <h3 class="text-5xl font-semibold mb-3">Aenean lacinia bibendum</h3>
+        <div class="text-block px-6">
+          <h3 class="text-3xl md:text-5xl font-semibold mb-3">Aenean lacinia bibendum</h3>
           <p>Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor
             ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
             Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
@@ -199,8 +199,8 @@
 
     <section id="schweinemobil" class="relative bg-white">
       <div class="h-screen">
-        <h1 class="text-5xl font-bold pt-12 text-center fade-in">
-          Das Schweinemobil – Nachhaltige Tierhaltung zum Anfassen
+        <h1 class="text-3xl md:text-5xl font-bold pt-12 text-center fade-in pt-28">
+          Das Schweinemobil – Nachhaltige Tierhaltung zum nachmachen
         </h1>
         <div class="schweinemobil-stage relative w-full h-full grid place-items-center overflow-hidden">
           <!-- Base technical drawing -->
