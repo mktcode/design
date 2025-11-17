@@ -225,7 +225,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 28px;
   transform: translateX(-50%);
   z-index: 20;
-  opacity: 0.5;
+  opacity: 0.8;
   transition: opacity .3s ease;
   pointer-events: none; /* purely decorative */
 }

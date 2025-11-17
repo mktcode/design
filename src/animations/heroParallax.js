@@ -12,7 +12,9 @@ export function initHeroParallax() {
     },
   })
     .to('#hero .scroll-indicator', { opacity: 0, duration: 0.05, ease: 'none' }, 0)
-    .to('header h1', { y: -50, opacity: 0, ease: 'none' }, 0)
+    .to('header img', { opacity: 0, ease: 'none', duration: 0.2, scale: 0.9 }, 0)
+    .to('header h1', { opacity: 0, ease: 'none', duration: 0.2, scale: 0.9 }, 0)
+    .to('header nav', { opacity: 0, ease: 'none', duration: 0.2, scale: 0.9 }, 0)
     .fromTo(
       '.hero-media',
       { scale: 1, filter: 'blur(0px)' },
