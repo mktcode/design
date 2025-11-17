@@ -26,25 +26,25 @@
         Kontakt
       </a>
     </nav>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-indicator__ring">
+        <div class="scroll-indicator__dot"></div>
+      </div>
+    </div>
   </header>
 
-  <main id="app">
-    <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
-      <!-- Parallax background layer (fixed to viewport) restored -->
-      <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
-        <video class="hero-bg h-full w-full object-cover will-change-transform" aria-hidden="true" playsinline autoplay muted loop preload="auto" poster="./assets/img/schweinemobil-focus.jpg">
-          <source src="./assets/video/hero1.webm" type="video/webm" />
-        </video>
-        <div class="hero-overlay absolute inset-0 bg-white opacity-0 will-change-opacity"></div>
-      </div>
-      <!-- Scroll-down indicator -->
-      <div class="scroll-indicator" aria-hidden="true">
-        <div class="scroll-indicator__ring">
-          <div class="scroll-indicator__dot"></div>
-        </div>
-      </div>
-    </section>
+  <section id="hero" class="relative overflow-hidden min-h-screen grid place-items-center px-6">
+    <!-- Parallax background layer (fixed to viewport) restored -->
+    <div class="fixed inset-0 -z-10 pointer-events-none" data-parallax-container>
+      <video class="hero-bg h-full w-full object-cover will-change-transform" aria-hidden="true" playsinline autoplay muted loop preload="auto" poster="./assets/img/schweinemobil-focus.jpg">
+        <source src="./assets/video/hero1.webm" type="video/webm" />
+      </video>
+      <div class="hero-overlay absolute inset-0 bg-white opacity-0 will-change-opacity"></div>
+    </div>
+  </section>
 
+  <main id="app" class="bg-white opacity-0 will-change-opacity">
     <section id="welcome" class="px-6 pt-24 max-h-[170vh] overflow-hidden">
       <div class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-24">
         <div class="fade-in text-xl leading-relaxed">

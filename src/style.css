@@ -3,6 +3,31 @@
 
 @import "tailwindcss";
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}
+
 /* App base styles (optional) */
 :root {
   color-scheme: light dark;
@@ -219,7 +244,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Scroll-down indicator (hero) */
-#hero .scroll-indicator {
+.scroll-indicator {
   position: absolute;
   left: 50%;
   bottom: 28px;
@@ -230,7 +255,7 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none; /* purely decorative */
 }
 
-#hero .scroll-indicator__ring {
+.scroll-indicator__ring {
   width: 28px;
   height: 42px;
   border-radius: 16px;
@@ -240,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(10px);
 }
 
-#hero .scroll-indicator__dot {
+.scroll-indicator__dot {
   width: 6px;
   height: 6px;
   border-radius: 9999px;

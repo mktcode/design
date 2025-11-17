@@ -11,7 +11,8 @@ export function initHeroParallax() {
       scrub: true,
     },
   })
-    .to('#hero .scroll-indicator', { opacity: 0, duration: 0.05, ease: 'none' }, 0)
+    .to('#app', { opacity: 1, duration: 0.2, ease: 'none' }, 0)
+    .to('.scroll-indicator', { opacity: 0, duration: 0.05, ease: 'none' }, 0)
     .to('header img', { opacity: 0, ease: 'none', duration: 0.2, scale: 0.9 }, 0)
     .to('header h1', { opacity: 0, ease: 'none', duration: 0.2, scale: 0.9 }, 0)
     .to('header nav', { opacity: 0, ease: 'none', duration: 0.2, scale: 0.9 }, 0)
@@ -21,7 +22,7 @@ export function initHeroParallax() {
       { scale: 1.35, filter: 'blur(50px)', ease: 'none' },
       0
     )
-    .to('.hero-overlay', { opacity: 1, duration: 0.2, ease: 'none' }, 0)
+    .to('.hero-overlay', { opacity: 0.8, duration: 0.2, ease: 'none' }, 0)
 
   // Subtle upward motion for hero fades
   try {
