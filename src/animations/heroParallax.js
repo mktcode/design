@@ -11,6 +11,7 @@ export function initHeroParallax() {
       scrub: true,
     },
   })
+    .to('#hero .scroll-indicator', { opacity: 0, duration: 0.05, ease: 'none' }, 0)
     .to('header h1', { y: -50, opacity: 0, ease: 'none' }, 0)
     .fromTo(
       '.hero-media',

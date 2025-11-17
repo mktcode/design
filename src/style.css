@@ -217,3 +217,51 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
   }
 }
+
+/* Scroll-down indicator (hero) */
+#hero .scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 20;
+  opacity: 0.5;
+  transition: opacity .3s ease;
+  pointer-events: none; /* purely decorative */
+}
+
+#hero .scroll-indicator__ring {
+  width: 28px;
+  height: 42px;
+  border-radius: 16px;
+  border: 2px solid rgba(255,255,255,.9);
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(10px);
+}
+
+#hero .scroll-indicator__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,.95);
+  transform: translateY(-8px);
+  animation: scroll-dot-pull 1.6s cubic-bezier(.25,.8,.3,1) infinite;
+}
+
+@keyframes scroll-dot-pull {
+  0% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hero .scroll-indicator__dot {
+    animation: none;
+  }
+}
