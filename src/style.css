@@ -51,7 +51,7 @@ body {
 
 /* Modal styles */
 .modal {
-  @apply fixed inset-0 bg-white z-9999 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out;
+  @apply fixed inset-0 bg-white z-9999 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out p-4;
 }
 
 .modal.active {
@@ -59,9 +59,9 @@ body {
 }
 
 .modal-content {
-  @apply max-w-4xl w-[90%] max-h-[90vh] overflow-y-auto p-8 relative;
+  @apply max-w-4xl w-full max-h-full overflow-y-auto p-6 md:p-8 relative;
 }
 
 .modal-close {
-  @apply absolute top-4 right-4 border-0 rounded-md cursor-pointer flex items-center justify-center transition-colors duration-200 text-brand;
+  @apply absolute top-2 right-2 md:top-4 md:right-4 border-0 rounded-md cursor-pointer flex items-center justify-center transition-colors duration-200 text-brand;
 }
