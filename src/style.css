@@ -50,12 +50,15 @@ body {
 }
 
 /* Modal styles */
+/* Modal base: GSAP handles opacity/animation */
 .modal {
-  @apply fixed inset-0 bg-white z-50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out overflow-hidden;
+  @apply fixed inset-0 bg-white z-50 opacity-0 pointer-events-none overflow-hidden;
+  visibility: hidden;
 }
 
 .modal.active {
-  @apply opacity-100 pointer-events-auto;
+  @apply pointer-events-auto;
+  visibility: visible;
 }
 
 .modal-content {
@@ -65,3 +68,6 @@ body {
 .modal-close {
   @apply fixed top-4 right-4 md:top-6 md:right-6 z-10 border-0 rounded-md cursor-pointer flex items-center justify-center transition-colors duration-200 text-brand hover:text-brand/80;
 }
+
+/* Optional backdrop effect if design changes to semi-transparent background
+   Currently using solid white as per original design; adjust if needed */
