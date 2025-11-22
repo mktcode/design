@@ -51,17 +51,17 @@ body {
 
 /* Modal styles */
 .modal {
-  @apply fixed inset-0 bg-white z-9999 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out p-4;
+  @apply fixed inset-0 bg-white z-50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out overflow-hidden;
 }
 
 .modal.active {
-  @apply opacity-100 pointer-events-auto;
+  @apply opacity-100;
 }
 
 .modal-content {
-  @apply max-w-4xl w-full max-h-full overflow-y-auto p-6 md:p-8 relative;
+  @apply max-w-4xl w-full h-full overflow-y-auto p-6 md:p-8 mx-auto flex flex-col justify-center items-center;
 }
 
 .modal-close {
-  @apply absolute top-2 right-2 md:top-4 md:right-4 border-0 rounded-md cursor-pointer flex items-center justify-center transition-colors duration-200 text-brand;
+  @apply fixed top-4 right-4 md:top-6 md:right-6 z-10 border-0 rounded-md cursor-pointer flex items-center justify-center transition-colors duration-200 text-brand hover:text-brand/80;
 }
