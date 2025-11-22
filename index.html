@@ -9,37 +9,33 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
-  <header class="flex flex-col items-center justify-between gap-6 min-h-screen px-6 py-12">
-    <div class="flex justify-between items-start w-full max-w-4xl">
-      <h1 class="font-brand text-2xl *:px-6 *:py-2 flex" id="logo">
-        <div class="bg-brand text-white rounded-sm relative overflow-hidden before:absolute before:contents before:right-3.5 before:top-1/2 before:translate-x-6 before:-translate-y-1/2 before:size-5 before:bg-white before:rounded-full">
-          Petra Möller
-        </div>
-        <div class="bg-white text-brand relative overflow-hidden before:absolute before:contents before:left-3.5 before:top-1/2 before:-translate-x-6 before:-translate-y-1/2 before:size-5 before:bg-brand before:rounded-full">
-          Steuerberaterin
-        </div>
-      </h1>
-      <div class="flex flex-col text-right text-gray-500">
-        <div>
-          Sutthauser Straße 49
-        </div>
-        <div>
-          49124 Georgsmarienhütte
-        </div>
-        <div class="mt-3">
-          Telefon: 0 54 01 – 82 32-0
-        </div>
-        <div>
-          Telefax: 0 54 01 – 82 32-12
-        </div>
-        <div class="mt-3">
-          Mo. – Do. 	08.00 – 16.00 Uhr
-        </div>
-        <div>
-          Fr. 	08.00 – 13.00 Uhr
-        </div>
+  <div class="flex justify-between items-start w-full max-w-4xl mx-auto py-6 px-2">
+    <h1 class="font-brand text-2xl *:px-6 *:py-2 flex" id="logo">
+      <div class="bg-brand text-white rounded-sm relative overflow-hidden before:absolute before:contents before:right-3.5 before:top-1/2 before:translate-x-6 before:-translate-y-1/2 before:size-5 before:bg-white before:rounded-full">
+        Petra Möller
+      </div>
+      <div class="bg-white text-brand relative overflow-hidden before:absolute before:contents before:left-3.5 before:top-1/2 before:-translate-x-6 before:-translate-y-1/2 before:size-5 before:bg-brand before:rounded-full">
+        Steuerberaterin
+      </div>
+    </h1>
+    <div class="flex flex-col text-right text-gray-500">
+      <div class="mt-3">
+        Telefon: 05401 – 82 32-0
+      </div>
+      <div>
+        Fax: 05401 – 82 32-12
+      </div>
+      <div class="mt-3">
+        Mo. – Do. 	08.00 – 16.00 Uhr
+      </div>
+      <div>
+        Fr. 	08.00 – 13.00 Uhr
       </div>
     </div>
+  </div>
+
+  <div class="flex gap-2">
+    <div class="bg-gray-200 flex-1 rounded-r-sm"></div>
     <div class="w-full max-w-4xl flex flex-col gap-2 relative">
       <a href="#privatperson" class="block relative group bg-[url('/img/startseite-privatperson-schmal.png')] bg-cover bg-center overflow-hidden rounded-sm">
         <div class="bg-gray-500/50 flex items-center justify-center px-12 py-12">
@@ -66,11 +62,13 @@
         </div>
       </a>
     </div>
-    <footer class="flex gap-4 text-gray-500">
-      <a href="#impressum" class="hover:text-brand transition">Impressum</a>
-      <a href="#datenschutz" class="hover:text-brand transition">Datenschutz</a>
-    </footer>
-  </header>
+    <div class="bg-gray-200 flex-1 rounded-l-sm"></div>
+  </div>
+
+  <footer class="flex items-center justify-center gap-4 text-gray-500 max-w-4xl w-full mx-auto p-6 pt-24">
+    <a href="#impressum" class="hover:text-brand transition">Impressum</a>
+    <a href="#datenschutz" class="hover:text-brand transition">Datenschutz</a>
+  </footer>
 
   <!-- Static Modal (no templates) -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading" hidden data-lenis-prevent>
