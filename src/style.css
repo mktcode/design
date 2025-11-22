@@ -55,7 +55,7 @@ body {
 }
 
 .modal.active {
-  @apply opacity-100;
+  @apply opacity-100 pointer-events-auto;
 }
 
 .modal-content {
