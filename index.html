@@ -193,22 +193,18 @@
     &copy; 2025 Steuerberater. Alle Rechte vorbehalten.
   </footer>
 
-  <!-- Modal Template -->
-  <template id="modal-template">
-    <div class="modal">
-      <button class="modal-close" aria-label="Modal schließen">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-        </svg>          
-      </button>
-      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-heading" data-lenis-prevent>
-        <div class="modal-body"></div>
-      </div>
-    </div>
-  </template>
+  <!-- Static Modal (no templates) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading" hidden data-lenis-prevent>
+    <button class="modal-close" aria-label="Modal schließen">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="modal-body"></div>
+  </div>
 
-  <!-- Category Content Templates -->
-  <template id="modal-privatperson">
+  <!-- Hidden Category Content Blocks -->
+  <div id="modal-privatperson" class="modal-category" hidden>
     <h2 class="text-brand font-semibold text-lg mb-2">Arbeitnehmer / Privatperson</h2>
     <h1 class="font-brand text-5xl mb-8">Individuelle Steuerberatung für Arbeitnehmer und Privatpersonen</h1>
     <div class="space-y-4">
@@ -253,9 +249,9 @@
         </div>
       </div>
     </div>
-  </template>
+  </div>
 
-  <template id="modal-unternehmer">
+  <div id="modal-unternehmer" class="modal-category" hidden>
     <h2 class="text-brand font-semibold text-lg mb-2">Unternehmer</h2>
     <h1 class="font-brand text-5xl mb-8">Umfassende Beratung für Unternehmer und Gewerbetreibende</h1>
     <div class="space-y-4">
@@ -300,9 +296,9 @@
         </div>
       </div>
     </div>
-  </template>
+  </div>
 
-  <template id="modal-freiberufler">
+  <div id="modal-freiberufler" class="modal-category" hidden>
     <h2 class="text-brand font-semibold text-lg mb-2">Freiberufler</h2>
     <h1 class="font-brand text-5xl mb-8">Spezialisierte Betreuung für Freiberufler</h1>
     <div class="space-y-4">
@@ -347,9 +343,9 @@
         </div>
       </div>
     </div>
-  </template>
+  </div>
 
-  <template id="modal-aerzte">
+  <div id="modal-aerzte" class="modal-category" hidden>
     <h2 class="text-brand font-semibold text-lg mb-2">Ärzte</h2>
     <h1 class="font-brand text-5xl mb-8">Fachkundige Beratung für medizinische Berufe</h1>
     <div class="space-y-4">
@@ -394,7 +390,7 @@
         </div>
       </div>
     </div>
-  </template>
+  </div>
 
   <script type="module" src="/src/main.js"></script>
 </body>
