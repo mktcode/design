@@ -59,7 +59,7 @@ body {
 }
 
 .modal-content {
-  @apply max-w-7xl w-[90%] max-h-[90vh] overflow-y-auto p-8 relative;
+  @apply max-w-4xl w-[90%] max-h-[90vh] overflow-y-auto p-8 relative;
 }
 
 .modal-close {
