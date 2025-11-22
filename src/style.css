@@ -47,6 +47,10 @@ body {
 
 .button {
   @apply bg-brand text-white px-6 py-3 rounded-md hover:bg-brand/90 transition cursor-pointer;
+
+  &.inverted {
+    @apply bg-white text-brand border border-gray-200 hover:bg-gray-100;
+  }
 }
 
 /* Modal styles */
