@@ -12,8 +12,8 @@ gsap.fromTo('#target-groups a', {
 }, {
   opacity: 1,
   scale: 1,
-  duration: 0.5,
-  delay: 0.2,
+  duration: 0.3,
+  delay: 0.3,
   ease: 'power2.out',
-  stagger: 0.3,
+  stagger: 0.1,
 })
