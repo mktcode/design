@@ -10,16 +10,28 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
-  <div class="flex justify-between items-start w-full max-w-4xl mx-auto py-6 px-2">
-    <h1 class="font-brand text-2xl *:px-6 *:py-2 flex" id="logo">
-      <div class="bg-brand text-white rounded-sm relative overflow-hidden before:absolute before:contents before:right-3.5 before:top-1/2 before:translate-x-6 before:-translate-y-1/2 before:size-5 before:bg-white before:rounded-full">
-        Petra Möller
+  <div class="w-full max-w-4xl mx-auto px-2 my-6 flex justify-between items-end">
+    <div>
+      <div class="flex gap-6">
+        <div class="flex gap-0.5 items-center translate-x-1">
+          <div class="bg-brand w-8 h-16 rounded-l-full"></div>
+          <div class="bg-gray-300 w-0.5 h-24"></div>
+          <div class="bg-gray-400 w-8 h-16 rounded-r-full"></div>
+        </div>
+        <div class="border-b-2 border-gray-300 px-12 pt-3 -translate-x-14">
+          <h1 class="text-3xl text-gray-400 flex flex-col items-center">
+            Sozietät Möller
+            <span class="text-xl">Steuerberatung</span>
+          </h1>
+        </div>
       </div>
-      <div class="bg-white text-brand relative overflow-hidden before:absolute before:contents before:left-3.5 before:top-1/2 before:-translate-x-6 before:-translate-y-1/2 before:size-5 before:bg-brand before:rounded-full">
-        Steuerberaterin
+      <div class="flex gap-2 items-center text-gray-400 mt-12">
+        Sutthauser Straße 49
+        <div class="bg-brand size-0.5 rounded-full"></div>
+        49124 Georgsmarienhütte
       </div>
-    </h1>
-    <div class="flex flex-col text-right text-gray-500">
+    </div>
+    <div class="flex flex-col text-right text-gray-400">
       <div>
         Telefon: 05401 – 82 32-0
       </div>
@@ -36,34 +48,34 @@
   </div>
 
   <div class="flex gap-2">
-    <div class="bg-gray-200 flex-1 rounded-r-sm"></div>
+    <div class="bg-gray-100 flex-1 rounded-r-xs"></div>
     <div class="w-full max-w-4xl flex flex-col gap-2 relative" id="target-groups">
-      <a href="#privatperson" class="block relative group bg-[url('/img/startseite-privatperson-schmal.png')] bg-cover bg-center overflow-hidden rounded-sm">
+      <a href="#privatperson" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover bg-position-[0%_0%] overflow-hidden rounded-xs">
         <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
           <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Arbeitnehmer / Privatperson</span>
         </div>
       </a>
-      <a href="#unternehmer" class="block relative group bg-[url('/img/startseite-unternehmer.png')] bg-cover bg-center overflow-hidden rounded-sm">
+      <a href="#unternehmer" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover  bg-position-[0%_33%] overflow-hidden rounded-xs">
         <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
           <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Unternehmer</span>
         </div>
       </a>
-      <a href="#freiberufler" class="block relative group bg-[url('/img/startseite-freiberufler.png')] bg-cover bg-center overflow-hidden rounded-sm">
+      <a href="#freiberufler" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover  bg-position-[0%_66%] overflow-hidden rounded-xs">
         <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
           <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Freiberufler</span>
         </div>
       </a>
-      <a href="#aerzte" class="block relative group bg-[url('/img/startseite-aerzte.png')] bg-cover bg-center overflow-hidden rounded-sm">
+      <a href="#aerzte" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover  bg-position-[0%_96%] overflow-hidden rounded-xs">
         <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
           <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Ärzte</span>
         </div>
       </a>
     </div>
-    <div class="bg-gray-200 flex-1 rounded-l-sm"></div>
+    <div class="bg-gray-100 flex-1 rounded-l-xs"></div>
   </div>
 
   <div class="w-full max-w-4xl mx-auto mt-24 px-2">
@@ -99,9 +111,11 @@
     </div>
   </div>
 
-  <footer class="flex items-center justify-center gap-4 text-gray-500 max-w-4xl w-full mx-auto p-6 pt-24">
-    <a href="#impressum" class="hover:text-brand transition">Impressum</a>
-    <a href="#datenschutz" class="hover:text-brand transition">Datenschutz</a>
+  <footer class="flex items-center justify-center gap-4 bg-brand text-white p-6 mt-24">
+    <div class="max-w-4xl w-full flex justify-center gap-6">
+      <a href="#impressum" class="hover:text-white/70 transition">Impressum</a>
+      <a href="#datenschutz" class="hover:text-white/70 transition">Datenschutz</a>
+    </div>
   </footer>
 
   <!-- Static Modal (no templates) -->
