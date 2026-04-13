@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@200;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@200;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;700&display=swap');
 
 @import "tailwindcss";
 
@@ -36,7 +37,7 @@ html.lenis body {
 
 @theme {
   --font-text: 'Montserrat', sans-serif;
-  --font-brand: 'PT Sans', sans-serif;
+  --font-brand: 'Source Sans 3', sans-serif;
   --color-brand: #bc0021;
 }
 
@@ -59,7 +60,7 @@ body {
 /* Refactored modal: single scroll container, hidden by attribute */
 .modal[hidden] { display: none; }
 .modal {
-  @apply fixed inset-0 bg-white z-50 overflow-y-auto;
+  @apply fixed inset-0 z-50 overflow-y-auto;
   opacity: 0; /* gsap controls */
 }
 
