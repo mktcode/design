@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap');
 
 @import "tailwindcss";
 
@@ -35,14 +36,14 @@ html.lenis body {
 
 @theme {
   --font-text: 'Montserrat', sans-serif;
-  --font-brand: 'Source Sans 3', sans-serif;
+  --font-brand: 'PT Sans', sans-serif;
   --color-brand: #bc0021;
 }
 
 html,
 body {
   height: 100%;
-  font-family: var(--font-text);
+  font-family: var(--font-brand);
 }
 
 .button {
@@ -74,3 +75,7 @@ body {
 }
 
 .modal-category[hidden] { display: none; }
+
+a {
+  @apply text-brand hover:text-brand/80 transition;
+}

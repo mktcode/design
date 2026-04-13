@@ -9,34 +9,92 @@
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 
-<body class="bg-white text-gray-900 antialiased">
-  <div class="w-full max-w-4xl mx-auto px-2 mb-6 mt-12 flex justify-between items-end">
+<body class="bg-white text-gray-900 antialiased font-brand">
+  <div class="min-h-screen">
+    <img src="/img/tilt-shift.png" alt="Header Image" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale brightness-125 pointer-events-none">
+    <div class="absolute inset-0 bg-linear-to-r from-white to-transparent pointer-events-none z-0"></div>
+
+    <div class="w-full p-12 flex flex-col justify-between items-start relative z-10">
+      <div>
+        <div class="flex gap-6 ml-12">
+          <div class="flex gap-0.5 items-center">
+            <div class="bg-brand w-8 h-16 rounded-l-full"></div>
+            <div class="bg-gray-300 w-0.5 h-24"></div>
+            <div class="bg-gray-400 w-8 h-16 rounded-r-full"></div>
+          </div>
+          <div class="border-b-2 border-gray-300 px-12 pt-3 -translate-x-15">
+            <h1 class="text-3xl text-gray-500 flex flex-col items-center pl-2">
+              Sozietät Möller
+              <span class="text-xl">Steuerberatung</span>
+            </h1>
+          </div>
+        </div>
+        <div class="flex flex-col text-gray-400 mt-24 max-w-xl">
+          <div class="text-brand text-4xl font-bold mb-2">Ganzheitliche Beratung.</div>
+          <div class="italic text-3xl">Zukunftssicher und wachstumsorientiert.</div>
+        </div>
+      </div>
+      <div class="flex flex-col text-gray-600 mt-12 text-xl">
+        <div>
+          Sutthauser Straße 49
+        </div>
+        <div>
+          49124 Georgsmarienhütte
+        </div>
+        <div class="mt-3">
+          Telefon: 05401 – 82 32-0
+        </div>
+        <div>
+          Fax: 05401 – 82 32-12
+        </div>
+        <div>
+          E-Mail: <a href="mailto:moeller@stb-moeller.de">moeller@stb-moeller.de</a>
+        </div>
+        <div class="mt-3">
+          Mo. – Do. 	08.00 – 16.00 Uhr
+        </div>
+        <div>
+          Fr. 	08.00 – 13.00 Uhr
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full max-w-4xl mx-auto px-2 mb-12 mt-12 flex justify-between items-start">
     <div>
       <div class="flex gap-6">
-        <div class="flex gap-0.5 items-center translate-x-1">
+        <div class="flex gap-0.5 items-center">
           <div class="bg-brand w-8 h-16 rounded-l-full"></div>
           <div class="bg-gray-300 w-0.5 h-24"></div>
           <div class="bg-gray-400 w-8 h-16 rounded-r-full"></div>
         </div>
-        <div class="border-b-2 border-gray-300 px-12 pt-3 -translate-x-14">
-          <h1 class="text-3xl text-gray-400 flex flex-col items-center">
+        <div class="border-b-2 border-gray-300 px-12 pt-3 -translate-x-15">
+          <h1 class="text-3xl text-gray-500 flex flex-col items-center pl-2">
             Sozietät Möller
             <span class="text-xl">Steuerberatung</span>
           </h1>
         </div>
       </div>
-      <div class="flex gap-2 items-center text-gray-400 mt-16">
-        Sutthauser Straße 49
-        <div class="bg-brand size-0.5 rounded-full"></div>
-        49124 Georgsmarienhütte
+      <div class="flex flex-col text-gray-600 mt-12 text-xl">
+        <div class="text-brand font-bold">Ganzheitliche Beratung.</div>
+        <div class="italic">Zukunftssicher und wachstumsorientiert.</div>
       </div>
     </div>
-    <div class="flex flex-col text-right text-gray-400">
+    <div class="flex flex-col text-right text-gray-600">
       <div>
+        Sutthauser Straße 49
+      </div>
+      <div>
+        49124 Georgsmarienhütte
+      </div>
+      <div class="mt-3">
         Telefon: 05401 – 82 32-0
       </div>
       <div>
         Fax: 05401 – 82 32-12
+      </div>
+      <div>
+        E-Mail: <a href="mailto:moeller@stb-moeller.de">moeller@stb-moeller.de</a>
       </div>
       <div class="mt-3">
         Mo. – Do. 	08.00 – 16.00 Uhr
@@ -47,68 +105,48 @@
     </div>
   </div>
 
-  <div class="flex gap-2">
-    <div class="bg-white flex-1 rounded-r-3xl"></div>
-    <div class="w-full max-w-4xl flex flex-col gap-1 relative" id="target-groups">
-      <a href="#privatperson" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover bg-position-[0%_0%] overflow-hidden rounded-t-3xl rounded-b-xs">
-        <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
+  <div class="flex">
+    <div class="flex-1"></div>
+    <div class="w-full max-w-4xl flex flex-col gap-px relative" id="target-groups">
+      <a href="#privatperson" class="block relative group bg-[url('/img/tilt-shift.png')] bg-cover bg-position-[0%_0%] overflow-hidden">
+        <div class="bg-gray-500/30 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
-          <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Arbeitnehmer / Privatperson</span>
+          <span class="text-white text-4xl text-shadow-[0_0_14px_rgba(50,50,50,1),0_0_50px_rgba(0,0,0,1)] z-10">
+            Arbeitnehmer / Privatperson
+          </span>
         </div>
       </a>
-      <a href="#unternehmer" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover  bg-position-[0%_33%] overflow-hidden rounded-xs">
-        <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
+      <a href="#unternehmer" class="block relative group bg-[url('/img/tilt-shift.png')] bg-cover  bg-position-[0%_33%] overflow-hidden">
+        <div class="bg-gray-500/30 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
-          <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Unternehmer</span>
+          <span class="text-white text-4xl text-shadow-[0_0_14px_rgba(50,50,50,1),0_0_50px_rgba(0,0,0,1)] z-10">Unternehmer</span>
         </div>
       </a>
-      <a href="#freiberufler" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover  bg-position-[0%_66%] overflow-hidden rounded-xs">
-        <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
+      <a href="#freiberufler" class="block relative group bg-[url('/img/tilt-shift.png')] bg-cover  bg-position-[0%_66%] overflow-hidden">
+        <div class="bg-gray-500/30 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
-          <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Freiberufler</span>
+          <span class="text-white text-4xl text-shadow-[0_0_14px_rgba(50,50,50,1),0_0_50px_rgba(0,0,0,1)] z-10">Freiberufler</span>
         </div>
       </a>
-      <a href="#aerzte" class="block relative group bg-[url('/img/startseite-header.jpg')] bg-cover bg-position-[0%_95%] overflow-hidden rounded-t-xs rounded-b-3xl">
-        <div class="bg-gray-500/70 flex items-center justify-center px-12 py-12">
+      <a href="#aerzte" class="block relative group bg-[url('/img/tilt-shift.png')] bg-cover bg-position-[0%_95%] overflow-hidden">
+        <div class="bg-gray-500/30 flex items-center justify-center px-12 py-12">
           <div class="bg-brand/80 rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[1000px] transition-all duration-500"></div>
-          <span class="text-white text-3xl font-semibold text-shadow-sm z-10">Ärzte</span>
+          <span class="text-white text-4xl text-shadow-[0_0_14px_rgba(50,50,50,1),0_0_50px_rgba(0,0,0,1)] z-10">Ärzte</span>
         </div>
       </a>
     </div>
-    <div class="bg-white flex-1 rounded-l-3xl"></div>
+    <div class="flex-1"></div>
   </div>
 
   <div class="w-full max-w-4xl mx-auto mt-24 px-2">
-    <h2 class="text-brand font-semibold text-lg mb-2">Petra Möller</h2>
-    <h1 class="font-brand text-5xl mb-8">
-      Zur Unterstützung und Erweiterung unseres Teams suchen wir …
-    </h1>
-    <div class="space-y-4">
-      <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-        <h3 class="text-xl font-semibold">Steuerfachangestellte/r</h3>
-        <p class="text-lg leading-relaxed text-gray-700">
-          Erstellung und Analyse Ihres Jahresabschlusses zur finanziellen Transparenz.
+     <div class="bg-[url('/img/020.jpg')] bg-size-[150%] bg-center w-96 aspect-[1/1.6] shadow-2xl flex flex-col justify-end">
+      <div class="p-6">
+        <h2 class="text-white font-semibold text-lg">Daniel Möller</h2>
+        <p class="text-white">
+          Steuerberater, Fachberater für Unternehmensnachfolge (DStV e.V.) und zertifizierter Testamentsvollstrecker (DStV e.V.)
         </p>
-      </div>
-      <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-        <h3 class="text-xl font-semibold">Finanz- und Lohnbuchhalter</h3>
-        <p class="text-lg leading-relaxed text-gray-700">
-          Detaillierte Auswertungen zur Überwachung und Steuerung Ihrer Unternehmensleistung.
-        </p>
-      </div>
-      <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-        <h3 class="text-xl font-semibold">Steuerplanung</h3>
-        <p class="text-lg leading-relaxed text-gray-700">
-          Strategische Steuerplanung zur Optimierung Ihrer Steuerlast und Liquidität.
-        </p>
-      </div>
-      <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-        <h3 class="text-xl font-semibold">Unternehmensberatung</h3>
-        <p class="text-lg leading-relaxed text-gray-700">
-          Ganzheitliche Beratung zur Weiterentwicklung und Expansion Ihres Unternehmens.
-        </p>
-      </div>
-    </div>
+      </div>  
+     </div>
   </div>
 
   <div class="w-full max-w-4xl mx-auto mt-24 px-2">
