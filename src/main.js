@@ -22,9 +22,12 @@ const items = links
   })
   .filter(Boolean);
 
-function setActive() {
+let activeLink = null;
+let debounceTimer = null;
+
+function updateActive() {
   const center = window.innerHeight / 2;
-  const maxDistance = window.innerHeight * 0.5; // adjust if needed
+  const maxDistance = window.innerHeight * 0.5;
 
   let best = null;
   let bestDistance = Infinity;
@@ -40,14 +43,24 @@ function setActive() {
     }
   });
 
-  items.forEach(item => item.link.classList.remove('active'));
+  const nextLink =
+    best && bestDistance <= maxDistance
+      ? best.link
+      : null;
 
-  if (best && bestDistance <= maxDistance) {
-    best.link.classList.add('active');
-  }
+  if (nextLink === activeLink) return;
+
+  activeLink?.classList.remove('active');
+  nextLink?.classList.add('active');
+  activeLink = nextLink;
 }
 
-window.addEventListener('scroll', setActive, { passive: true });
-window.addEventListener('resize', setActive);
+function debouncedUpdate() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(updateActive, 50);
+}
 
-setActive();
+window.addEventListener('scroll', debouncedUpdate, { passive: true });
+window.addEventListener('resize', debouncedUpdate);
+
+updateActive();
