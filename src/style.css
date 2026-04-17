@@ -44,5 +44,5 @@ a {
 }
 
 .nav-pill {
-  @apply flex items-center px-6 py-2 rounded-full overflow-hidden relative border border-gray-100 bg-gray-100;
+  @apply flex items-center pl-18 pr-6 py-2 rounded-full overflow-hidden relative bg-linear-to-r from-gray-100 to-transparent;
 }
