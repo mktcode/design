@@ -9,3 +9,45 @@ gsap.fromTo('#target-groups a', {
   ease: 'power2.out',
   stagger: 0.1,
 })
+
+const links = [...document.querySelectorAll('a[href^="#"]')];
+
+const items = links
+  .map(link => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return null;
+
+    const section = document.querySelector(href);
+    return section ? { link, section } : null;
+  })
+  .filter(Boolean);
+
+function setActive() {
+  const center = window.innerHeight / 2;
+  const maxDistance = window.innerHeight * 0.5; // adjust if needed
+
+  let best = null;
+  let bestDistance = Infinity;
+
+  items.forEach(item => {
+    const rect = item.section.getBoundingClientRect();
+    const sectionCenter = rect.top + rect.height / 2;
+    const distance = Math.abs(sectionCenter - center);
+
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      best = item;
+    }
+  });
+
+  items.forEach(item => item.link.classList.remove('active'));
+
+  if (best && bestDistance <= maxDistance) {
+    best.link.classList.add('active');
+  }
+}
+
+window.addEventListener('scroll', setActive, { passive: true });
+window.addEventListener('resize', setActive);
+
+setActive();
