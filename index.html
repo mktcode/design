@@ -30,8 +30,8 @@
           </div>
         </div>
         <div class="flex flex-col text-gray-400 mt-12 max-w-xl">
-          <div class="text-brand text-4xl font-bold mb-2">Ganzheitliche Beratung.</div>
-          <div class="italic text-3xl">Zukunftssicher und wachstumsorientiert.</div>
+          <div class="text-brand text-4xl font-bold mb-1 text-shadow-sm">Ganzheitliche Beratung.</div>
+          <div class="italic text-3xl text-shadow-lg text-shadow-black/5">Zukunftssicher und wachstumsorientiert.</div>
         </div>
       </div>
 
@@ -108,67 +108,73 @@
   <div class="relative z-50 pointer-events-none">
     <div class="h-screen"></div>
 
-    <div class="ml-[650px] pointer-events-auto p-12 shadow-2xl bg-white rounded-tl-3xl">
-      <div class="py-12" id="privatperson">
-        <h2 class="text-brand font-semibold text-lg mb-2">Arbeitnehmer / Privatperson</h2>
-        <h1 class="font-brand text-5xl max-w-4xl mb-8">Individuelle Steuerberatung für Arbeitnehmer und Privatpersonen</h1>
-        <p class="text-2xl leading-relaxed text-gray-600 mb-8 max-w-5xl">
-          Wir bieten maßgeschneiderte Lösungen für Ihre steuerlichen Anliegen, damit Sie sich auf das Wesentliche konzentrieren können. Unsere Leistungen umfassen unter anderem:
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Einkommensteuererklärung</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Unterstützung bei der Erstellung und Einreichung Ihrer jährlichen Steuererklärung.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Steueroptimierung</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Beratung zur Minimierung Ihrer Steuerlast durch legale Gestaltungsmöglichkeiten.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Vermögensplanung</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Strategische Planung zur Sicherung und Vermehrung Ihres Vermögens.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Altersvorsorge</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Individuelle Beratung zur optimalen Altersvorsorge entsprechend Ihrer Lebenssituation.
-            </p>
+    <div class="ml-[650px] mr-12 pointer-events-auto shadow-2xl bg-white rounded-t-3xl">
+      <div id="privatperson">
+        <div class="h-96 relative flex flex-col p-12 justify-end">
+          <img src="/img/kalender.jpg" alt="Header Image" class="absolute inset-0 z-0 w-full h-96 object-cover object-top pointer-events-none rounded-t-3xl">
+          <div class="absolute inset-0 bg-linear-to-r from-black/20 to-transparent pointer-events-none z-10 rounded-t-3xl"></div>
+          <h2 class="text-brand font-semibold text-lg mb-2 relative text-shadow-lg text-shadow-white/10 z-20">Arbeitnehmer / Privatperson</h2>
+          <h1 class="font-brand text-5xl max-w-4xl relative text-white text-shadow-lg z-20">Individuelle Steuerberatung für Arbeitnehmer und Privatpersonen</h1>
+        </div>
+        <div class="p-12">
+          <p class="text-2xl leading-relaxed text-gray-600 mb-8 max-w-5xl">
+            Wir bieten maßgeschneiderte Lösungen für Ihre steuerlichen Anliegen, damit Sie sich auf das Wesentliche konzentrieren können. Unsere Leistungen umfassen unter anderem:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Einkommensteuererklärung</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Unterstützung bei der Erstellung und Einreichung Ihrer jährlichen Steuererklärung.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Steueroptimierung</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Beratung zur Minimierung Ihrer Steuerlast durch legale Gestaltungsmöglichkeiten.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Vermögensplanung</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Strategische Planung zur Sicherung und Vermehrung Ihres Vermögens.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Altersvorsorge</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Individuelle Beratung zur optimalen Altersvorsorge entsprechend Ihrer Lebenssituation.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="py-12" id="unternehmer">
+      <div class="p-12" id="unternehmer">
         <h2 class="text-brand font-semibold text-lg mb-2">Unternehmer</h2>
         <h1 class="font-brand max-w-4xl text-5xl mb-8">Umfassende Beratung für Unternehmer und Gewerbetreibende</h1>
         <p class="text-2xl leading-relaxed text-gray-600 mb-8 max-w-5xl">
           Unsere spezialisierten Dienstleistungen für Unternehmer helfen Ihnen, Ihr Unternehmen erfolgreich zu führen und zu wachsen. Wir bieten unter anderem:
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Jahresabschluss</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Erstellung und Analyse Ihres Jahresabschlusses zur finanziellen Transparenz.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Betriebswirtschaftliche Auswertungen</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Detaillierte Auswertungen zur Überwachung und Steuerung Ihrer Unternehmensleistung.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Steuerplanung</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Strategische Steuerplanung zur Optimierung Ihrer Steuerlast und Liquidität.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Unternehmensberatung</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Ganzheitliche Beratung zur Weiterentwicklung und Expansion Ihres Unternehmens.
@@ -177,32 +183,32 @@
         </div>
       </div>
 
-      <div class="py-12" id="freiberufler">
+      <div class="p-12" id="freiberufler">
         <h2 class="text-brand font-semibold text-lg mb-2">Freiberufler</h2>
         <h1 class="font-brand max-w-4xl text-5xl mb-8">Spezialisierte Betreuung für Freiberufler</h1>
         <p class="text-2xl leading-relaxed text-gray-600 mb-8 max-w-5xl">
           Unsere maßgeschneiderten Dienstleistungen für Freiberufler unterstützen Sie bei der effizienten Verwaltung Ihrer Finanzen und Steuern. Unsere Leistungen umfassen:
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Einnahmen-Überschuss-Rechnung</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Erstellung und Auswertung Ihrer Einnahmen-Überschuss-Rechnung für eine klare Finanzübersicht.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Gewinnermittlung</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Präzise Gewinnermittlung zur Optimierung Ihrer steuerlichen Situation.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Umsatzsteuer</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Beratung und Unterstützung bei der korrekten Abwicklung Ihrer Umsatzsteuerangelegenheiten.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Vorsorgeplanung</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Individuelle Vorsorgeplanung zur Absicherung Ihrer beruflichen und privaten Zukunft.
@@ -211,29 +217,29 @@
         </div>
       </div>
 
-      <div class="py-12" id="aerzte">
+      <div class="p-12 pb-24" id="aerzte">
         <h2 class="text-brand font-semibold text-lg mb-2">Ärzte</h2>
         <h1 class="font-brand text-5xl mb-8">Fachkundige Beratung für medizinische Berufe</h1>
         <div class="space-y-4">
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Praxisgründung</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Unterstützung bei der erfolgreichen Gründung Ihrer medizinischen Praxis.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Praxisabgabe</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Beratung und Begleitung bei der Abgabe oder Übergabe Ihrer Praxis.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Abrechnungswesen</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Effiziente Verwaltung und Optimierung Ihres Abrechnungswesens.
             </p>
           </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
+          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
             <h3 class="text-xl font-semibold">Investitionsplanung</h3>
             <p class="text-lg leading-relaxed text-gray-700">
               Strategische Planung Ihrer Investitionen zur Sicherung des Praxiserfolgs.
@@ -242,68 +248,82 @@
         </div>
       </div>
   
-      <div class="py-12" id="ueberuns">
-        <h2 class="text-brand font-semibold text-lg mb-2">Über uns</h2>
-        <h1 class="font-brand text-5xl mb-8">
-          Zur Unterstützung und Erweiterung unseres Teams suchen wir …
-        </h1>
-        <div class="space-y-4">
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Steuerfachangestellte/r</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Erstellung und Analyse Ihres Jahresabschlusses zur finanziellen Transparenz.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Finanz- und Lohnbuchhalter</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Detaillierte Auswertungen zur Überwachung und Steuerung Ihrer Unternehmensleistung.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Steuerplanung</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Strategische Steuerplanung zur Optimierung Ihrer Steuerlast und Liquidität.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Unternehmensberatung</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Ganzheitliche Beratung zur Weiterentwicklung und Expansion Ihres Unternehmens.
-            </p>
+      <div id="ueberuns">
+        <div class="h-96 relative flex flex-col p-12 justify-end">
+          <img src="/img/leistungen.jpg" alt="Header Image" class="absolute inset-0 z-0 w-full h-96 object-cover object-top pointer-events-none">
+          <div class="absolute inset-0 bg-linear-to-r from-black/30 to-transparent pointer-events-none z-10"></div>
+          <h2 class="text-brand font-semibold text-lg mb-2 relative text-shadow-lg text-shadow-white/10 z-20">Petra und Daniel Möller</h2>
+          <h1 class="font-brand text-5xl max-w-4xl relative text-white text-shadow-lg z-20">Über uns</h1>
+        </div>
+        <div class="p-12 pb-24">
+          <p class="text-2xl leading-relaxed text-gray-600 mb-8 max-w-5xl">
+            Als erfahrene Steuerberater mit über 20 Jahren Praxis bieten wir Ihnen eine umfassende und individuelle Beratung. Unser Team aus qualifizierten Fachkräften unterstützt Sie in allen steuerlichen und betriebswirtschaftlichen Belangen, damit Sie sich auf das Wesentliche konzentrieren können: Ihren Erfolg.
+          </p>
+          <div class="space-y-4">
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Steuerfachangestellte/r</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Erstellung und Analyse Ihres Jahresabschlusses zur finanziellen Transparenz.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Finanz- und Lohnbuchhalter</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Detaillierte Auswertungen zur Überwachung und Steuerung Ihrer Unternehmensleistung.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Steuerplanung</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Strategische Steuerplanung zur Optimierung Ihrer Steuerlast und Liquidität.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Unternehmensberatung</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Ganzheitliche Beratung zur Weiterentwicklung und Expansion Ihres Unternehmens.
+              </p>
+            </div>
           </div>
         </div>
       </div>
   
-      <div class="py-12" id="karriere">
-        <h2 class="text-brand font-semibold text-lg mb-2">Stellenangebote</h2>
-        <h1 class="font-brand text-5xl mb-8">
-          Zur Unterstützung und Erweiterung unseres Teams suchen wir …
-        </h1>
-        <div class="space-y-4">
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Steuerfachangestellte/r</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Erstellung und Analyse Ihres Jahresabschlusses zur finanziellen Transparenz.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Finanz- und Lohnbuchhalter</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Detaillierte Auswertungen zur Überwachung und Steuerung Ihrer Unternehmensleistung.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Steuerplanung</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Strategische Steuerplanung zur Optimierung Ihrer Steuerlast und Liquidität.
-            </p>
-          </div>
-          <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2">
-            <h3 class="text-xl font-semibold">Unternehmensberatung</h3>
-            <p class="text-lg leading-relaxed text-gray-700">
-              Ganzheitliche Beratung zur Weiterentwicklung und Expansion Ihres Unternehmens.
-            </p>
+      <div id="ueberuns">
+        <div class="h-96 relative flex flex-col p-12 justify-end">
+          <img src="/img/team.jpg" alt="Header Image" class="absolute inset-0 z-0 w-full h-96 object-cover object-top pointer-events-none">
+          <div class="absolute inset-0 bg-linear-to-r from-black/30 to-transparent pointer-events-none z-10"></div>
+          <h2 class="text-brand font-semibold text-lg mb-2 relative text-shadow-lg text-shadow-white/10 z-20">Karriere</h2>
+          <h1 class="font-brand text-5xl max-w-4xl relative text-white text-shadow-lg z-20">Komm ins Team</h1>
+        </div>
+        <div class="p-12">
+          <h1 class="font-brand text-5xl mb-8">
+            Zur Unterstützung und Erweiterung unseres Teams suchen wir …
+          </h1>
+          <div class="space-y-4">
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Steuerfachangestellte/r</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Erstellung und Analyse Ihres Jahresabschlusses zur finanziellen Transparenz.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Finanz- und Lohnbuchhalter</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Detaillierte Auswertungen zur Überwachung und Steuerung Ihrer Unternehmensleistung.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Steuerplanung</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Strategische Steuerplanung zur Optimierung Ihrer Steuerlast und Liquidität.
+              </p>
+            </div>
+            <div class="border-l-4 border-brand bg-gray-100 pl-4 py-2 rounded-md">
+              <h3 class="text-xl font-semibold">Unternehmensberatung</h3>
+              <p class="text-lg leading-relaxed text-gray-700">
+                Ganzheitliche Beratung zur Weiterentwicklung und Expansion Ihres Unternehmens.
+              </p>
+            </div>
           </div>
         </div>
       </div>
