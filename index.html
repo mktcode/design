@@ -12,31 +12,31 @@
 
 <body class="bg-white text-gray-900 antialiased font-brand">
   <div class="h-screen flex flex-col fixed top-0 left-0 w-full">
-    <img src="/img/005.jpg" alt="Header Image" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale brightness-125 pointer-events-none">
+    <img src="/img/005.jpg" alt="Header Image" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale brightness-125 pointer-events-none hidden xl:block">
+    <img src="/img/005-mobil.jpg" alt="Header Image" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale brightness-125 pointer-events-none xl:hidden block">
     <div class="absolute inset-0 bg-linear-to-r from-white to-transparent pointer-events-none z-0"></div>
 
-    <div class="w-full h-full p-12 grow flex flex-col justify-between items-start relative z-10">
+    <div class="w-full h-full p-6 xl:p-12 grow flex flex-col justify-start gap-6 xl:gap-12 items-start relative z-10">
       <div>
         <div class="flex gap-6">
           <div class="flex gap-0.5 items-center">
-            <div class="bg-brand w-8 h-16 rounded-l-full"></div>
-            <div class="bg-gray-300 w-0.5 h-24"></div>
-            <div class="bg-gray-400 w-8 h-16 rounded-r-full"></div>
+            <div class="bg-brand w-4 xl:w-8 h-8 xl:h-16 rounded-l-full"></div>
+            <div class="bg-gray-300 w-px xl:w-0.5 h-12 xl:h-24"></div>
+            <div class="bg-gray-400 w-4 xl:w-8 h-8 xl:h-16 rounded-r-full"></div>
           </div>
           <div class="border-b-2 border-gray-300 px-12 pt-3 -translate-x-15">
-            <h1 class="text-3xl text-gray-500 flex flex-col items-center pl-2">
+            <h1 class="text-xl xl:text-3xl text-gray-500 flex flex-col items-center pl-2">
               Sozietät Möller
-              <span class="text-xl">Steuerberatung</span>
+              <span class="text-lg xl:text-xl">Steuerberatung</span>
             </h1>
           </div>
         </div>
       </div>
-
       <div class="flex flex-col text-gray-400 max-w-xl">
-        <div class="text-brand text-4xl font-bold mb-1 text-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
+        <div class="text-brand text-3xl xl:text-4xl font-bold mb-1 text-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
           Ganzheitliche Beratung.
         </div>
-        <div class="italic text-3xl text-shadow-lg text-shadow-black/5">Zukunftssicher und wachstumsorientiert.</div>
+        <div class="italic text-2xl xl:text-3xl text-shadow-lg text-shadow-black/5">Zukunftssicher und wachstumsorientiert.</div>
       </div>
 
       <div class="flex flex-col text-gray-600 text-lg font-light">
@@ -63,64 +63,52 @@
         </div>
       </div>
 
-      <div class="w-full max-w-sm -ml-18 flex flex-col gap-1 relative" id="target-groups">
+      <div class="w-full max-w-sm hidden xl:flex flex-col gap-1 relative" id="target-groups">
         <a href="#privatperson" class="block relative group overflow-hidden">
           <div class="nav-pill group">
-            <div class="bg-brand rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[500px] in-[.active]:size-[500px] transition-all duration-500"></div>
-          
-            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500 group-hover:text-white in-[.active]:text-white">
+            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500">
               Arbeitnehmer / Privatperson
             </span>
           </div>
         </a>
         <a href="#unternehmer" class="block relative group overflow-hidden">
           <div class="nav-pill group">
-            <div class="bg-brand rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[500px] in-[.active]:size-[500px] transition-all duration-500"></div>
-          
-            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500 group-hover:text-white in-[.active]:text-white">
+            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500">
               Unternehmer
             </span>
           </div>
         </a>
         <a href="#freiberufler" class="block relative group overflow-hidden">
           <div class="nav-pill group">
-            <div class="bg-brand rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[500px] in-[.active]:size-[500px] transition-all duration-500"></div>
-          
-            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500 group-hover:text-white in-[.active]:text-white">
+            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500">
               Freiberufler
             </span>
           </div>
         </a>
         <a href="#aerzte" class="block relative group overflow-hidden">
           <div class="nav-pill group">
-            <div class="bg-brand rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[500px] in-[.active]:size-[500px] transition-all duration-500"></div>
-          
-            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500 group-hover:text-white in-[.active]:text-white">
+            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500">
               Ärzte
             </span>
           </div>
         </a>
         <a href="#ueberuns" class="block relative group overflow-hidden">
           <div class="nav-pill group">
-            <div class="bg-brand rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[500px] in-[.active]:size-[500px] transition-all duration-500"></div>
-          
-            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500 group-hover:text-white in-[.active]:text-white">
+            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500">
               Über uns
             </span>
           </div>
         </a>
         <a href="#karriere" class="block relative group overflow-hidden">
           <div class="nav-pill group">
-            <div class="bg-brand rounded-br-full size-0 absolute top-0 left-0 group-hover:size-[500px] in-[.active]:size-[500px] transition-all duration-500"></div>
-          
-            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500 group-hover:text-white in-[.active]:text-white">
+            <span class="text-xl font-light text-gray-950 z-10 transition-colors duration-500">
               Karriere
             </span>
           </div>
         </a>
       </div>
 
-      <div class="flex gap-4">
+      <div class="flex gap-4 mt-auto">
         <a href="#" class="secondary">Impressum</a>
         <a href="#" class="secondary">Datenschutz</a>
       </div>
@@ -131,7 +119,7 @@
     <div class="h-screen"></div>
 
     <div id="privatperson" class="h-12"></div>
-    <div class="ml-[650px] mr-12 pointer-events-auto shadow-2xl bg-white rounded-t-3xl">
+    <div class="mx-0 xl:ml-[650px] xl:mr-12 max-w-7xl pointer-events-auto shadow-2xl bg-white rounded-t-3xl">
       <div>
         <div class="h-96 relative flex flex-col p-12 justify-end">
           <img src="/img/kalender.jpg" alt="Header Image" class="absolute inset-0 z-0 w-full h-96 object-cover object-top pointer-events-none rounded-t-3xl">
